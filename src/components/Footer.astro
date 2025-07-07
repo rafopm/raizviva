@@ -1,0 +1,200 @@
+---
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("blog")).sort(
+	(a, b) => a.data.order.valueOf() - b.data.order.valueOf(),
+);
+
+const products = (await getCollection("productos")).sort(
+	(a, b) => a.data.order.valueOf() - b.data.order.valueOf(),
+);
+
+const currentYear = new Date().getFullYear();
+
+import { WHATSAPP } from "../consts";
+import Icon from "./shared/Icon.astro";
+
+const contactData = {
+	whatsapp: WHATSAPP,
+	location: "Jr. Andahuaylas Lote 09 - Mariatana, Huarochirí, Lima - Perú",
+	socialMedia: [
+		{
+			platform: "Facebook",
+			url: "https://www.facebook.com/Quistanaperu/",
+			icon: "/images/icons/facebook.svg",
+		},
+	],
+};
+---
+
+<footer class="footer-section">
+	<div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+		<div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+			<!-- Logo Section -->
+			<div>
+				<div class="rounded-lg pb-8">
+					<a href="/" class="flex flex-col items-center space-y-1">
+						<img
+							src="/images/logo/logo-quistana.webp"
+							srcset="
+								/images/logo/logo-quistana.webp 767w,
+								/images/logo/logo-quistana.webp 1024w
+							"
+							class="logo w-full h-auto max-w-xs"
+							loading="lazy"
+							alt="Logo Quistana"
+						/>
+					</a>
+				</div>
+			</div>
+
+			<!-- Blog Section -->
+			<div class="sm:mx-auto lg:mx-0">
+				<h2 class="mb-2 font-semibold text-qs-dark uppercase">Blog</h2>
+				<ul class="flex flex-col space-y-2 font-medium">
+					{
+						posts.map((post) => (
+							<li>
+								<a
+									href={`/blog/${post.id}`}
+									class="text-qs-dark hover:text-qs-light transition-colors duration-200"
+								>
+									{post.data.title}
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</div>
+
+			<!-- Products Section -->
+			<div class="sm:mx-auto lg:mx-0">
+				<h2 class="mb-2 font-semibold text-qs-dark uppercase">
+					Productos
+				</h2>
+				<ul class="flex flex-col space-y-2 font-medium">
+					{
+						products.map((product) => (
+							<li>
+								<a
+									href={`/productos/${product.id}`}
+									class="text-qs-dark  hover:text-qs-light transition-colors duration-200"
+								>
+									{product.data.title}
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</div>
+
+			<!-- Contact Section -->
+			<div class="sm:mx-auto lg:mx-0">
+				<h2 class="mb-2 font-semibold text-qs-dark uppercase">
+					Contáctanos
+				</h2>
+				<ul class="flex flex-col space-y-4 font-medium">
+					<!-- WhatsApp -->
+					<li>
+						<a
+							href={`https://wa.me/${contactData.whatsapp}`}
+							target="_blank"
+							class="flex items-center space-x-2 text-qs-dark hover:text-qs-light transition-colors duration-200 group"
+						>
+							<span
+								class="bg-white p-1 rounded-lg flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-1"
+							>
+								<Icon
+									name="whatsapp"
+									class="text-green-500"
+									size={20}
+								/>
+							</span>
+							<span class="">{contactData.whatsapp}</span>
+						</a>
+					</li>
+
+					<!-- Location -->
+					<li>
+						<a
+							href={`https://maps.app.goo.gl/ACwYgddBpWE7Bq2b8`}
+							target="_blank"
+							class="flex items-center space-x-2 text-qs-dark hover:text-qs-light transition-colors duration-200 group"
+						>
+							<span
+								class="bg-white p-1 rounded-lg flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-1"
+							>
+								<Icon
+									name="location"
+									class="text-red-500 mt-0.5 flex-shrink-0"
+									size={20}
+								/>
+							</span>
+							<span class="leading-relaxed">
+								{contactData.location}
+							</span>
+						</a>
+					</li>
+
+					<!-- Social Media -->
+					{
+						contactData.socialMedia.map((social) => (
+							<li>
+								<a
+									href={social.url}
+									target="_blank"
+									class="flex items-center space-x-2 text-qs-dark hover:text-qs-light transition-colors duration-200 group"
+								>
+									<span class="bg-white p-1 rounded-lg flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-1">
+										<Icon
+											name="facebook"
+											class="text-blue-500 mt-0.5 flex-shrink-0"
+											size={20}
+										/>
+									</span>
+									<span class="">{social.platform}</span>
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<!-- Divider -->
+	<hr class="my-6 border-gray-600 mx-auto w-full max-w-screen-xl" />
+
+	<!-- Footer Bottom -->
+	<div class="mx-auto w-full max-w-screen-xl px-4">
+		<div
+			class="flex flex-col lg:flex-row items-center justify-between text-center lg:text-left"
+		>
+			<span class="text-sm text-qs-dark">
+				© {currentYear}
+				<a
+					href="/"
+					class="text-qs-dark hover:text-white transition-colors duration-200 ml-1"
+				>
+					Quistana
+				</a>. Todos los derechos reservados.
+			</span>
+			<div class="mt-4 lg:mt-0">
+				<!-- Aquí puedes agregar enlaces adicionales si los necesitas -->
+			</div>
+		</div>
+	</div>
+</footer>
+
+<style>
+	.footer-section {
+		background: var(--qs-cta);
+	}
+
+	.logo {
+		max-width: 100%;
+		height: auto;
+		display: block;
+		margin: 0 auto;
+	}
+</style>

@@ -1,0 +1,122 @@
+---
+import Layout from "../layouts/BlogPost.astro";
+import Ubicacion from "../components/home/Ubicacion.astro";
+import ScrollAnimation from "../components/shared/ScrollAnimation.astro";
+import Icon from "../components/shared/Icon.astro";
+import Map from "../components/shared/Map.astro";
+
+const contactData = {
+  whatsapp: "+51 949 249 443",
+  location: "Caserío Quisquicha, Distrito de Mariatana, Huarochirí, Lima, Perú",
+  socialMedia: [],
+  contactMethods: [
+    {
+      title: "whatsapp",
+      description: "Respuesta directa para pedidos y consultas",
+      icon: "whatsapp",
+      url: "https://wa.me/51949249443?text=Hola,%20estoy%20interesado%20en%20comprar%20productos%20de%20Quisquicha",
+      primary: true,
+    },
+    {
+      title: "location",
+      description:
+        "Jr. Andahuaylas Lote 09 - Mariatana - Huarochirí, a 3,534 m.s.n.m. ",
+      icon: "location",
+      url: "#ubicacion",
+      primary: false,
+    },
+    {
+      title: "Correo electrónico",
+      description: "asociasonlosinnovadoresdequis@gmail.com",
+      icon: "email",
+      url: "mailto:asociasonlosinnovadoresdequis@gmail.com",
+      primary: false,
+    },
+  ],
+};
+---
+
+<Layout
+  title="Contáctanos"
+  metatitle="Contáctanos | Asociación Los Innovadores de Quisquicha"
+  metadescription="¿Te interesa comprar productos frescos y agrícolas de altura? Escríbenos por WhatsApp o visítanos en Quisquicha, Huarochirí. Estamos listos para atenderte."
+  description="Contáctanos para comprar arveja verde, queso fresco, carne de ovino, frutas altoandinas y más. Productos frescos, cultivados en comunidad y directo desde nuestras tierras en Quisquicha."
+  heroimage="/images/home/hero-image.webp"
+  heroimagethumb="/images/home/hero-image.webp"
+  slug="/contactanos/"
+>
+  <!-- Métodos de contacto -->
+  <section class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-6">
+      <ScrollAnimation animation="fadeInUp" delay={0.2}>
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-light text-gray-900 mb-4">
+            Formas de contacto
+          </h2>
+          <div class="w-24 h-0.5 bg-green-500 mx-auto"></div>
+        </div>
+      </ScrollAnimation>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        {
+          contactData.contactMethods.map((method, index) => (
+            <ScrollAnimation animation="fadeInUp" delay={0.3 + index * 0.1}>
+              <a
+                href={method.url}
+                target={method.url.startsWith("http") ? "_blank" : undefined}
+                class={`group block p-8 rounded-2xl transition-all duration-300 hover:scale-110 ${
+                  method.primary
+                    ? "bg-gradient-to-br from-green-50 to-green-100 border-2 border-green-200"
+                    : "bg-gradient-to-br hover:bg-gray-100 border-2 border-gray-200 hover:border-gray-300"
+                }`}
+              >
+                <div
+                  class={`w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto ${
+                    method.primary
+                      ? "bg-green-500 text-white"
+                      : "bg-amber-500 text-white"
+                  }`}
+                >
+                  <Icon name={method.icon} size={28} />
+                </div>
+                <div class="text-center">
+                  <h3 class="text-xl font-medium text-gray-900 mb-3">
+                    {method.title}
+                  </h3>
+                  <p class="text-gray-600 leading-relaxed">
+                    {method.description}
+                  </p>
+                </div>
+              </a>
+            </ScrollAnimation>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Mapa -->
+  <section class="py-20 bg-white" id="ubicacion">
+    <div class="max-w-6xl mx-auto px-6">
+      <ScrollAnimation animation="fadeInUp" delay={0.2}>
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-light text-gray-900 mb-4">
+            Nuestra ubicación en los Andes
+          </h2>
+          <div class="w-24 h-0.5 bg-green-500 mx-auto mb-6"></div>
+          <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+            Nos encontramos en Quisquicha, una comunidad agrícola organizada a
+            más de 3,500 metros de altura, en el distrito de Mariatana,
+            Huarochirí.
+          </p>
+        </div>
+      </ScrollAnimation>
+
+      <ScrollAnimation animation="fadeInUp" delay={0.4}>
+        <div class="bg-white rounded-3xl p-4 shadow-xl overflow-hidden">
+          <Map />
+        </div>
+      </ScrollAnimation>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,185 @@
+---
+import { WHATSAPP } from "../../consts";
+import Button from "../shared/Button.astro";
+---
+
+<section class="hero-container">
+    <!-- Imagen del hero -->
+    <picture>
+        <source
+            srcset="/images/home/hero-image-mobile.webp"
+            media="(max-width: 480px)"
+        />
+        <source
+            srcset="/images/home/hero-image-tablet.webp"
+            media="(max-width: 768px)"
+        />
+        <img
+            src="/images/home/hero-image.webp"
+            alt="Productos Quistana - Mariatana"
+            class="hero-image"
+            loading="eager"
+        />
+    </picture>
+
+    <!-- Contenido del hero -->
+    <div class="mx-auto my-auto max-w-7xl relative w-full h-full">
+        <div class="text-content gap-4 relative z-50 bg-none mx-2">
+            <h1
+                class="animate__animated animate__fadeInLeft delay-0s text-white mt-0 text-2xl md:text-4xl lg:text-6xl xl:text-8xl leading-tight"
+            >
+                Productos de Altura, Cultivados con Orgullo en los Andes
+                Peruanos
+            </h1>
+
+            <p
+                class="animate__animated animate__fadeInLeft delay-1s text-white mt-4 text-xl lg:text-2xl xl:text-4xl hidden lg:block"
+            >
+                Desde Quisquicha (3,534 m.s.n.m.), cosechamos con dedicación lo
+                mejor de nuestra tierra para tu mesa.
+                <br class="hidden md:block" />
+                Calidad, esfuerzo y compromiso en cada producto.
+            </p>
+
+            <span
+                class="animate__animated animate__fadeInLeft delay-2s flex gap-4 justify-left mt-2 md:mt-6"
+            >
+                <Button
+                    text="Quiero Comprar Productos Frescos"
+                    url={`https://wa.me/${WHATSAPP}?text=Me%20interesa%20sus%20productos%20de%20miel%20https://quistana.pe/%20`}
+                    variant="primary"
+                />
+
+                <Button
+                    text="Conoce nuestra historia"
+                    url="#certificacion"
+                    variant="secondary"
+                    className="ml-2"
+                />
+            </span>
+        </div>
+    </div>
+</section>
+
+<style>
+    .hero-container {
+        height: 100vh;
+        overflow: hidden;
+        position: relative;
+        z-index: 1;
+        isolation: isolate;
+    }
+
+    .hero-image {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        z-index: 2;
+    }
+
+    /* Contenido del texto */
+    .text-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        max-width: 1200px;
+        width: 75%;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        padding-left: 2rem;
+    }
+
+    .text-content h1 {
+        text-shadow:
+            1px 4px 2px black,
+            0 0 1em gray,
+            0 0 0.1em gray;
+    }
+
+    .text-content p {
+        text-shadow:
+            4px 4px 2px var(--qs-dark),
+            0 0 2em var(--qs-dark),
+            0 0 0.3em var(--qs-dark);
+    }
+
+    /* Responsive para tablets y móviles */
+    @media (max-width: 1024px) {
+        .text-content {
+            width: 70%;
+            padding-left: 1.5rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .text-content {
+            padding: 1.5rem;
+            width: 90%;
+            left: 50%;
+            transform: translate(-50%, 0%);
+            padding-left: 1.5rem;
+        }
+
+        .text-content h1 {
+            font-size: 2.5rem;
+        }
+
+        .text-content p {
+            font-size: 1.25rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .text-content {
+            padding: 1rem;
+            width: 92%;
+            padding-left: 1rem;
+        }
+        .text-content h1 {
+            font-size: 1.8rem;
+            line-height: 1.2;
+        }
+        .text-content p {
+            font-size: 1rem;
+        }
+    }
+
+    /* Ajuste especial para móviles en landscape */
+    @media (max-width: 768px) and (orientation: landscape) {
+        .text-content {
+            width: 70%;
+            left: 0;
+            transform: translateY(-50%);
+            padding-left: 1.5rem;
+        }
+        .text-content h1 {
+            font-size: 2rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .hero-container {
+            margin: 0;
+            padding: 0;
+        }
+
+        picture {
+            display: block;
+            margin: 0;
+            padding: 0;
+        }
+
+        .hero-image {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+        }
+    }
+</style>

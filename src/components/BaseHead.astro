@@ -1,0 +1,255 @@
+---
+interface Props {
+	title: string;
+	metadescription: string;
+	image?: string;
+	updateDate?: string;
+}
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const absoluteUrl = new URL(Astro.url.pathname, Astro.site);
+
+const {
+	title,
+	metadescription = "",
+	image = "/images/home/hero-image.webp",
+	updateDate,
+} = Astro.props;
+---
+
+<!-- Global Metadata -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<meta name="language" content="es" />
+<meta name="robots" content="index, follow" />
+<meta name="googlebot" content="index, follow" />
+<meta name="author" content="Quistana" />
+<meta name="copyright" content="Quistana 2025" />
+<meta name="geo.region" content="PE" />
+<meta name="geo.placename" content="Lima, Perú" />
+<meta name="geo.position" content="-12.237741487964232;-76.32748288861242" />
+<meta name="ICBM" content="-12.237741487964232;-76.32748288861242" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<!-- Font preloads -->
+<link
+	rel="preload"
+	href="/fonts/humanst521bt.woff2"
+	as="font"
+	type="font/woff2"
+	crossorigin
+/>
+<link
+	rel="preload"
+	href="/fonts/bree-regular.woff2"
+	as="font"
+	type="font/woff2"
+	crossorigin="anonymous"
+/>
+<link
+	rel="preload"
+	href="/fonts/bree-bold.woff2"
+	as="font"
+	type="font/woff2"
+	crossorigin="anonymous"
+/>
+
+<link rel="preload" href={image} as="image" fetchpriority="high" />
+<link
+	rel="preload"
+	href="/images/logo/logo-quistana-mobile.webp"
+	as="image"
+	media="(max-width: 640px)"
+	fetchpriority="high"
+/>
+
+<!-- Canonical URL -->
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={metadescription} />
+<meta name="date" content={updateDate} />
+<meta property="article:modified_time" content={updateDate} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={absoluteUrl} />
+
+<meta property="og:title" content={title} />
+<meta property="og:description" content={metadescription} />
+<meta property="og:image" content={new URL(image, Astro.url)} />
+<meta property="og:site_name" content="Quistana" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={absoluteUrl} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={metadescription} />
+<meta property="twitter:image" content={new URL(image, Astro.url)} />
+
+<link
+	rel="apple-touch-icon"
+	sizes="57x57"
+	href="/images/favicon/apple-icon-57x57.png"
+/>
+<link
+	rel="apple-touch-icon"
+	sizes="60x60"
+	href="/images/favicon/apple-icon-60x60.png"
+/>
+<link
+	rel="apple-touch-icon"
+	sizes="72x72"
+	href="/images/favicon/apple-icon-72x72.png"
+/>
+<link
+	rel="apple-touch-icon"
+	sizes="76x76"
+	href="/images/favicon/apple-icon-76x76.png"
+/>
+<link
+	rel="apple-touch-icon"
+	sizes="114x114"
+	href="/images/favicon/apple-icon-114x114.png"
+/>
+<link
+	rel="apple-touch-icon"
+	sizes="120x120"
+	href="/images/favicon/apple-icon-120x120.png"
+/>
+<link
+	rel="apple-touch-icon"
+	sizes="144x144"
+	href="/images/favicon/apple-icon-144x144.png"
+/>
+<link
+	rel="apple-touch-icon"
+	sizes="152x152"
+	href="/images/favicon/apple-icon-152x152.png"
+/>
+<link
+	rel="apple-touch-icon"
+	sizes="180x180"
+	href="/images/favicon/apple-icon-180x180.png"
+/>
+<link
+	rel="icon"
+	type="image/png"
+	sizes="192x192"
+	href="/images/favicon/android-icon-192x192.png"
+/>
+<link
+	rel="icon"
+	type="image/png"
+	sizes="32x32"
+	href="/images/favicon/favicon-32x32.png"
+/>
+<link
+	rel="icon"
+	type="image/png"
+	sizes="96x96"
+	href="/images/favicon/favicon-96x96.png"
+/>
+<link
+	rel="icon"
+	type="image/png"
+	sizes="16x16"
+	href="/images/favicon/favicon-16x16.png"
+/>
+<link rel="manifest" href="/images/favicon/manifest.json" />
+<meta name="msapplication-TileColor" content="#ffffff" />
+<meta
+	name="msapplication-TileImage"
+	content="/images/favicon/ms-icon-144x144.png"
+/>
+<meta name="theme-color" content="#ffffff" />
+
+<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "LocalBusiness",
+		"name": "Quistana",
+		"image": "https://quistana.pe/images/logo/logo-quistana.webp",
+		"@id": "https://quistana.pe",
+		"url": "https://quistana.pe",
+		"telephone": "+51987082504",
+		"address": {
+			"@type": "PostalAddress",
+			"streetAddress": "Jr. Andahuaylas Lote 09 - Mariatana, Huarochirí, Lima - Perú",
+			"addressLocality": "Huarochirí",
+			"addressRegion": "Lima",
+			"postalCode": "15630",
+			"addressCountry": "PE"
+		},
+		"geo": {
+			"@type": "GeoCoordinates",
+			"latitude": -12.0251104,
+			"longitude": -77.5930254
+		},
+		"openingHoursSpecification": [
+			{
+				"@type": "OpeningHoursSpecification",
+				"dayOfWeek": [
+					"Monday",
+					"Tuesday",
+					"Wednesday",
+					"Thursday",
+					"Friday"
+				],
+				"opens": "08:00",
+				"closes": "17:00"
+			},
+			{
+				"@type": "OpeningHoursSpecification",
+				"dayOfWeek": "Saturday",
+				"opens": "09:00",
+				"closes": "14:00"
+			}
+		],
+		"sameAs": [
+			"https://www.facebook.com/Quistana",
+			"https://www.instagram.com/Quistana"
+		]
+	}
+</script>
+
+<script is:inline type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		"itemListElement": [
+			{
+				"@type": "ListItem",
+				"position": 1,
+				"name": "Inicio",
+				"item": "https://quistana.pe"
+			},
+			{
+				"@type": "ListItem",
+				"position": 2,
+				"name": "Productos",
+				"item": "https://quistana.pe/productos"
+			},
+			{
+				"@type": "ListItem",
+				"position": 3,
+				"name": "Blog",
+				"item": "https://quistana.pe/blog"
+			},
+			{
+				"@type": "ListItem",
+				"position": 4,
+				"name": "Contáctanos",
+				"item": "https://quistana.pe/contactanos"
+			}
+		]
+	}
+</script>
+
+<link rel="preconnect" href="https://player.vimeo.com" />
+<link rel="preconnect" href="https://f.vimeocdn.com" />
+<link rel="preconnect" href="https://vod-adaptive-ak.vimeocdn.com" />

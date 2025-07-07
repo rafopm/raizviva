@@ -1,0 +1,26 @@
+---
+// src/components/Button.astro
+const {
+  text = "Botón",
+  url = "#",
+  variant = "primary", // 'primary' | 'secondary'
+  className = "",
+} = Astro.props;
+---
+
+<a
+  href={url}
+  target={url.startsWith("http") ? "_blank" : "_self"}
+  class={`
+    transform transition-all duration-300 ease-in-out hover:scale-105
+    text-center rounded-full w-fit px-2 py-2 md:px-4 md:py-2 lg:px-6 lg:py-3 font-primary border-2 border-qs-cta text-sm lg:text-xl shadow-lg hover:bg-qs-accent-blue hover:text-white  hover:shadow-xl
+    ${
+      variant === "primary"
+        ? "bg-qs-dark text-white  shadow-md "
+        : "bg-white text-qs-dark  font-medium"
+    }
+    ${className}
+  `}
+>
+  {text}
+</a>

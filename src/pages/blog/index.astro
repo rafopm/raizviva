@@ -1,0 +1,30 @@
+---
+import Layout from "../../layouts/BlogPost.astro";
+import Container from "../../components/shared/Container.astro";
+import Posts from "../../components/Pages/Posts.astro";
+---
+
+<Layout
+  title="Blog Quisquicha"
+  metatitle="Historias de la Tierra, Agricultura y Comunidad | Asociación Quisquicha"
+  metadescription="Explora artículos sobre agricultura familiar, desarrollo rural, productos andinos y la vida en Mariatana, Huarochirí. Descubre cómo se cultiva esperanza desde la altura."
+  description="En el blog de Los Innovadores de Quisquicha compartimos historias reales de nuestra comunidad, nuestra tierra y nuestros productos. Aprende sobre agricultura responsable, cultura andina y el valor de comprar directamente al productor."
+  heroimage="/images/home/hero-image.webp"
+  heroimagethumb="/images/home/hero-image.webp"
+  slug="/blog/"
+>
+  <main>
+    <Container>
+      <div class="pt-10">
+        <h1 class="text-center text-3xl mb-6 font-bold text-qs-dark">
+          Blog Quisquicha: Tierra, Comunidad y Futuro
+        </h1>
+        <p class="text-center text-lg mb-8 text-qs-dark/70">
+          Historias desde los Andes peruanos: descubre cómo cultivamos, soñamos y construimos futuro con nuestras manos. Aquí compartimos saberes, tradición y el orgullo de producir desde el corazón de Mariatana.
+        </p>
+
+        <Posts />
+      </div>
+    </Container>
+  </main>
+</Layout>

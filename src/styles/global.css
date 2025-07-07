@@ -1,0 +1,264 @@
+@font-face {
+    font-family: 'Humanst521 BT';
+    src: url('/fonts/humanst521bt.woff2') format('woff2'),
+         url('/fonts/humanst521bt.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Bree';
+    src: url('/fonts/bree-regular.woff2') format('woff2'),
+         url('/fonts/bree-regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Bree';
+    src: url('/fonts/bree-bold.woff2') format('woff2'),
+         url('/fonts/bree-bold.woff') format('woff');
+    font-weight: bold; 
+    font-style: normal;
+    font-display: swap;
+}
+ 
+:root {
+	/* Colores principales */
+	--qs-dark: #613F2C;
+	--qs-dark-rgb: 97, 63, 44;
+	--qs-bg-very-light: #F2F7FC;
+	--qs-bg-very-light-rgb: 242, 247, 252;
+	--qs-bg-light: #E1EDF8;
+	--qs-bg-light-rgb: 225, 237, 248; 
+	--qs-cta: #98CA48;
+	--qs-cta-rgb: 152, 202, 72;
+	--qs-accent: #40BFFF;
+	--qs-accent-rgb: 64, 191, 255;
+	--qs-text-dark: #222F49;
+	--qs-text-dark-rgb: 34, 47, 73;
+	--qs-text-light: #FFFFFF;
+	--qs-text-light-rgb: 255, 255, 255;
+	--qs-accent-blue: #3A63AC;
+	--qs-accent-blue-rgb: 58, 99, 172;
+
+	--qs-primary: var(--qs-accent-blue);
+	--qs-primary-rgb: var(--qs-accent-blue-rgb);
+
+	/* Fuentes */
+	--font-primary: 'Bree', sans-serif;
+	--font-secondary: 'Humanst521 BT', serif;
+
+	/* Filtros para iconos */
+	--qs-accent-filter: invert(69%) sepia(90%) saturate(426%) hue-rotate(349deg) brightness(98%) contrast(94%);
+	--qs-blue-filter: invert(28%) sepia(22%) saturate(1198%) hue-rotate(157deg) brightness(93%) contrast(89%);
+}
+
+.dark {
+	--qs-dark: #F2F7FC;
+	--qs-dark-rgb: 242, 247, 252;
+	--qs-bg-very-light: #613F2C;
+	--qs-bg-very-light-rgb: 97, 63, 44;
+	--qs-bg-light: #613F2C;
+	--qs-bg-light-rgb: 97, 63, 44;
+	--qs-text-dark: #FFFFFF;
+	--qs-text-dark-rgb: 255, 255, 255;
+	--qs-text-light: #613F2C;
+	--qs-text-light-rgb: 97, 63, 44;
+}
+
+.icon-color-accent {
+	filter: var(--qs-accent-filter);
+}
+
+.icon-color-blue {
+	filter: var(--qs-blue-filter);
+}
+
+.font-primary {
+	font-family: var(--font-primary);
+}
+
+.font-secondary {
+	font-family: var(--font-secondary);
+}
+
+.font-tertiary {
+	font-family: var(--font-tertiary);
+}
+
+body {
+	font-family: var(--font-primary);
+	margin: 0;
+	padding: 0;
+	text-align: left;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+	color: var(--qs-text-dark);
+	background-color: var(--qs-bg-very-light);
+	font-size: 1rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 0 0 0.5rem 0;
+	color: var(--qs-text-dark);
+	line-height: 1.2;
+	font-family: var(--font-secondary);
+}
+
+h1 {
+	font-size: 3.052em;
+}
+
+h2 {
+	font-size: 2.441em;
+}
+
+h3 {
+	font-size: 1.953em;
+}
+
+h4 {
+	font-size: 1.563em;
+}
+
+h5 {
+	font-size: 1.25em;
+}
+
+strong,
+b {
+	font-weight: 700;
+}
+
+a {
+	color: var(--qs-accent);
+}
+
+a:hover {
+	color: var(--qs-cta);
+}
+
+p {
+	margin-bottom: 1em;
+	color: var(--qs-text-dark)
+}
+
+.prose p {
+	margin-bottom: 2em;
+}
+
+.title {
+	text-align: center;
+	color: var(--qs-dark);
+	font-size: 48px;
+	font-family: var(--font-primary);
+	padding: 0;
+
+}
+
+.subtitle {
+	font-weight: 600;
+	font-size: 32px;
+	font-family: var(--font-secondary);
+	margin: 0 20px;
+	color: var(--qs-accent-blue)
+}
+
+.paragraph {
+	margin-bottom: 2rem;
+	font-size: 20px;
+	font-family: var(--font-primary);
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+	width: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+	background-image: linear-gradient(to bottom, var(--qs-bg-very-light), var(--qs-accent));
+	border: 1px solid var(--qs-bg-light);
+	border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+	background-color: var(--qs-bg-very-light);
+	border-radius: 10px;
+}
+
+@media (max-width: 720px) {
+	body {
+		font-size: 18px;
+	}
+
+	main {
+		padding: 0;
+	}
+
+	.title {
+		font-size: 2rem;
+	}
+
+	.subtitle {
+		font-size: 1.5rem;
+	}
+
+	.paragraph {
+		font-size: 1.2rem;
+	}
+}
+
+/* Clases de utilidad para Tailwind */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+	.bg-qs-dark {
+		background-color: var(--qs-dark);
+	}
+
+	.bg-qs-very-light {
+		background-color: var(--qs-bg-very-light);
+	}
+
+	.bg-qs-light {
+		background-color: var(--qs-bg-light);
+	}
+
+	.bg-qs-cta {
+		background-color: var(--qs-cta);
+	}
+
+	.bg-qs-accent {
+		background-color: var(--qs-accent);
+	}
+
+	.bg-qs-blue {
+		background-color: var(--qs-accent-blue);
+	}
+
+	.text-qs-dark {
+		color: var(--qs-text-dark);
+	}
+
+	.text-qs-light {
+		color: var(--qs-text-light);
+	}
+
+	.border-qs-accent {
+		border-color: var(--qs-accent);
+	}
+
+	.border-qs-cta {
+		border-color: var(--qs-cta);
+	}
+}

@@ -1,0 +1,71 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+import Layout from "../../layouts/BlogPost.astro";
+import Container from "../../components/shared/Container.astro";
+import { render } from "astro:content";
+
+export async function getStaticPaths() {
+	const productos = await getCollection("productos");
+	return productos.map((producto) => ({
+		params: { slug: producto.id },
+		props: producto,
+	}));
+}
+
+type Props = CollectionEntry<"productos">;
+
+const producto = Astro.props;
+const { Content } = await render(producto);
+
+const products = (await getCollection("productos"))
+	.filter((productItem) => productItem.id !== producto.id)
+	.sort((a, b) => a.data.order - b.data.order);
+---
+
+<Layout
+	title={producto.data.title}
+	metatitle={producto.data.metatitle}
+	description={producto.data.description}
+	metadescription={producto.data.metadescription}
+	heroimage={producto.data.imgurl}
+	heroimagethumb={producto.data.imgthumburl}
+	slug={producto.id}
+>
+	<Container className="my-10">
+		<div class="flex flex-col lg:flex-row gap-10">
+			<div class="lg:w-2/3 w-full flex flex-col gap-4">
+				<div class="prose">
+					<Content />
+				</div>
+			</div>
+
+			<div
+				class="lg:w-1/3 w-full mt-4 lg:mt-0 bg-cedit-50 px-10 rounded-lg"
+			>
+				<img
+					src={producto.data.imgthumburl}
+					transition:name={`img-${producto.id}`}
+					alt={`Imagen de ${producto.data.title}`}
+					class="mb-10"
+				/>
+				<h2 class="text-lg font-semibold mb-2 underline">
+					Otros productos:
+				</h2>
+				<ul class="flex flex-col gap-2">
+					{
+						products.map((productItem) => (
+							<li class="text-sm text-gray-700">
+								<a
+									href={`/productos/${productItem.id}`}
+									class="hover:underline"
+								>
+									{productItem.data.title}
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</div>
+		</div>
+	</Container>
+</Layout>

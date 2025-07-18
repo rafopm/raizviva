@@ -93,6 +93,7 @@ import ScrollAnimation from "../shared/ScrollAnimation.astro";
           class="flex justify-center gap-4 mt-6 lg:mt-0 lg:absolute lg:top-1/2 lg:left-0 lg:right-0 lg:justify-between"
         >
           <button
+            aria-label="Previo"
             id="prevBtn"
             class="bg-green-600 hover:bg-green-700 text-white rounded-full w-10 h-10 flex items-center justify-center transition-colors z-20 lg:relative lg:-ml-12"
           >
@@ -111,6 +112,7 @@ import ScrollAnimation from "../shared/ScrollAnimation.astro";
           </button>
 
           <button
+            aria-label="Siguiente"
             id="nextBtn"
             class="bg-green-600 hover:bg-green-700 text-white rounded-full w-10 h-10 flex items-center justify-center transition-colors z-20 lg:relative lg:-mr-12"
           >
@@ -151,6 +153,9 @@ import ScrollAnimation from "../shared/ScrollAnimation.astro";
               class="bg-gray-200 rounded-lg overflow-hidden shadow-lg h-80 lg:h-96"
             >
               <iframe
+                name="Mapa de ubicación de RaizViva"
+                title="Mapa de ubicación de RaizViva"
+                aria-label="Mapa de ubicación de RaizViva"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4703.69030422813!2d-76.39224478861426!3d-12.104155988087596!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x910f61006e9fcb17%3A0xa7eaba33496b6633!2sRaizViva!5e1!3m2!1ses-419!2spe!4v1752778746283!5m2!1ses-419!2spe"
                 width="100%"
                 height="100%"

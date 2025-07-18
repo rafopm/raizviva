@@ -8,7 +8,7 @@ const url = Astro.url.pathname;
 
 <div class="hero-secondary">
     <img
-        src={image || "/images/home/hero-image.webp"}
+        src={image || "/images/home/campo-raiz-viva.webp"}
         srcset={`${imagethumb} 767w, ${image} `}
         class="image-background"
         alt=""
@@ -25,7 +25,7 @@ const url = Astro.url.pathname;
         </div>
     </div>
 
-    <Breadcrumb url={url} title={title} class="breadcrumb-absolute" />
+    <Breadcrumb url={url} title={title} class="" />
 </div>
 
 <style define:vars={{ image }}>
@@ -48,9 +48,9 @@ const url = Astro.url.pathname;
 
     .hero-secondary p {
         text-shadow:
-            2px 2px 2px var(--qs-dark),
-            0 0 2em var(--qs-dark),
-            0 0 0.3em var(--qs-dark);
+            2px 2px 2px var(--rv-dark),
+            0 0 2em var(--rv-dark),
+            0 0 0.3em var(--rv-dark);
     }
 
     .image-background {
@@ -64,7 +64,7 @@ const url = Astro.url.pathname;
     }
 
     .text-shadow-lg {
-        text-shadow: -4px -4px 8px var(--qs-bg-light-rgb);
+        text-shadow: -4px -4px 8px var(--rv-bg-light-rgb);
     }
 
     .image-secondary {
@@ -93,9 +93,9 @@ const url = Astro.url.pathname;
         .hero-secondary {
             background: linear-gradient(
                 to bottom,
-                rgba(var(--qs-bg-light-rgb), 0.2),
-                rgba(var(--qs-bg-light-rgb), 0.6),
-                rgba(var(--qs-bg-light-rgb), 0.8)
+                rgba(var(--rv-bg-light-rgb), 0.2),
+                rgba(var(--rv-bg-light-rgb), 0.6),
+                rgba(var(--rv-bg-light-rgb), 0.8)
             );
         }
     }

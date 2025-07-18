@@ -14,12 +14,12 @@ const isActive = href === pathname || href === "/" + subpath?.[0];
 </a>
 <style>
     a {
-        font-size: 1.4rem;
+        font-size: 1.5rem;
         font-weight: 700;
         display: block;
         text-decoration: none;
-        font-family: var(--font-secondary);
-        color: var(--qs-bg-light);
+        font-family: var(--font-primary);
+        color: var(--rv-dark);
         transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
         padding: 5px;
         position: relative;
@@ -34,7 +34,7 @@ const isActive = href === pathname || href === "/" + subpath?.[0];
 
     a.active,
     a:hover {
-        color: var(--qs-accent);
+        color: var(--rv-accent);
         /* transform: rotateX(360deg); */
     }
 

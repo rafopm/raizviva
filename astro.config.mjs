@@ -6,6 +6,6 @@ import tailwind from '@astrojs/tailwind';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://quistana.pe',
+	site: 'https://4321-firebase-raizviva-1751916628046.cluster-etsqrqvqyvd4erxx7qq32imrjk.cloudworkstations.dev/',
 	integrations: [mdx(), sitemap(), tailwind()],
 });

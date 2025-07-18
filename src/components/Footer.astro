@@ -11,16 +11,16 @@ const products = (await getCollection("productos")).sort(
 
 const currentYear = new Date().getFullYear();
 
-import { WHATSAPP } from "../consts";
+import { DIRECCION, WHATSAPP } from "../consts";
 import Icon from "./shared/Icon.astro";
 
 const contactData = {
 	whatsapp: WHATSAPP,
-	location: "Jr. Andahuaylas Lote 09 - Mariatana, Huarochirí, Lima - Perú",
+	location: DIRECCION,
 	socialMedia: [
 		{
 			platform: "Facebook",
-			url: "https://www.facebook.com/Quistanaperu/",
+			url: "https://www.facebook.com/RaizVivaperu/",
 			icon: "/images/icons/facebook.svg",
 		},
 	],
@@ -33,16 +33,13 @@ const contactData = {
 			<!-- Logo Section -->
 			<div>
 				<div class="rounded-lg pb-8">
-					<a href="/" class="flex flex-col items-center space-y-1">
+					<a href="/" class="logo-container block w-auto h-auto relative ">
+						
 						<img
-							src="/images/logo/logo-quistana.webp"
-							srcset="
-								/images/logo/logo-quistana.webp 767w,
-								/images/logo/logo-quistana.webp 1024w
-							"
-							class="logo w-full h-auto max-w-xs"
-							loading="lazy"
-							alt="Logo Quistana"
+							src="/images/logo/logo-raiz-viva.svg"
+							alt="Raíz Viva"
+							class="logo-image w-[220px] sm:w-[280px] md:w-[300px] lg:w-[320px] transition-all duration-300 relative z-10"
+							height="auto"
 						/>
 					</a>
 				</div>
@@ -50,14 +47,14 @@ const contactData = {
 
 			<!-- Blog Section -->
 			<div class="sm:mx-auto lg:mx-0">
-				<h2 class="mb-2 font-semibold text-qs-dark uppercase">Blog</h2>
+				<h2 class="mb-2 font-semibold text-rv-very-light uppercase">Blog</h2>
 				<ul class="flex flex-col space-y-2 font-medium">
 					{
 						posts.map((post) => (
 							<li>
 								<a
 									href={`/blog/${post.id}`}
-									class="text-qs-dark hover:text-qs-light transition-colors duration-200"
+									class="text-rv-very-light hover:text-rv-light transition-colors duration-200"
 								>
 									{post.data.title}
 								</a>
@@ -69,7 +66,7 @@ const contactData = {
 
 			<!-- Products Section -->
 			<div class="sm:mx-auto lg:mx-0">
-				<h2 class="mb-2 font-semibold text-qs-dark uppercase">
+				<h2 class="mb-2 font-semibold text-rv-very-light uppercase">
 					Productos
 				</h2>
 				<ul class="flex flex-col space-y-2 font-medium">
@@ -78,7 +75,7 @@ const contactData = {
 							<li>
 								<a
 									href={`/productos/${product.id}`}
-									class="text-qs-dark  hover:text-qs-light transition-colors duration-200"
+									class="text-rv-very-light  hover:text-rv-light transition-colors duration-200"
 								>
 									{product.data.title}
 								</a>
@@ -90,7 +87,7 @@ const contactData = {
 
 			<!-- Contact Section -->
 			<div class="sm:mx-auto lg:mx-0">
-				<h2 class="mb-2 font-semibold text-qs-dark uppercase">
+				<h2 class="mb-2 font-semibold text-rv-very-light uppercase">
 					Contáctanos
 				</h2>
 				<ul class="flex flex-col space-y-4 font-medium">
@@ -99,7 +96,7 @@ const contactData = {
 						<a
 							href={`https://wa.me/${contactData.whatsapp}`}
 							target="_blank"
-							class="flex items-center space-x-2 text-qs-dark hover:text-qs-light transition-colors duration-200 group"
+							class="flex items-center space-x-2 text-rv-very-light hover:text-rv-light transition-colors duration-200 group"
 						>
 							<span
 								class="bg-white p-1 rounded-lg flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-1"
@@ -119,7 +116,7 @@ const contactData = {
 						<a
 							href={`https://maps.app.goo.gl/ACwYgddBpWE7Bq2b8`}
 							target="_blank"
-							class="flex items-center space-x-2 text-qs-dark hover:text-qs-light transition-colors duration-200 group"
+							class="flex items-center space-x-2 text-rv-very-light hover:text-rv-light transition-colors duration-200 group"
 						>
 							<span
 								class="bg-white p-1 rounded-lg flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-1"
@@ -143,7 +140,7 @@ const contactData = {
 								<a
 									href={social.url}
 									target="_blank"
-									class="flex items-center space-x-2 text-qs-dark hover:text-qs-light transition-colors duration-200 group"
+									class="flex items-center space-x-2 text-rv-very-light hover:text-rv-light transition-colors duration-200 group"
 								>
 									<span class="bg-white p-1 rounded-lg flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-1">
 										<Icon
@@ -163,24 +160,24 @@ const contactData = {
 	</div>
 
 	<!-- Divider -->
-	<hr class="my-6 border-gray-600 mx-auto w-full max-w-screen-xl" />
+	<hr class="my-6 border-rv-cta mx-auto w-full max-w-screen-xl" />
 
 	<!-- Footer Bottom -->
 	<div class="mx-auto w-full max-w-screen-xl px-4">
 		<div
 			class="flex flex-col lg:flex-row items-center justify-between text-center lg:text-left"
 		>
-			<span class="text-sm text-qs-dark">
+			<span class="text-sm text-rv-very-light">
 				© {currentYear}
 				<a
 					href="/"
-					class="text-qs-dark hover:text-white transition-colors duration-200 ml-1"
+					class="text-rv-very-light font-bold hover:text-white transition-colors duration-200 ml-1"
 				>
-					Quistana
+					RaizViva
 				</a>. Todos los derechos reservados.
 			</span>
 			<div class="mt-4 lg:mt-0">
-				<!-- Aquí puedes agregar enlaces adicionales si los necesitas -->
+				
 			</div>
 		</div>
 	</div>
@@ -188,7 +185,7 @@ const contactData = {
 
 <style>
 	.footer-section {
-		background: var(--qs-cta);
+		background: var(--rv-accent);
 	}
 
 	.logo {
@@ -196,5 +193,14 @@ const contactData = {
 		height: auto;
 		display: block;
 		margin: 0 auto;
+	}
+
+	.logo-image {
+		filter: brightness(0) invert(1);
+	} 
+
+	.logo-image:hover{
+		transform:scale(1.1);
+		transition: transform 0.3s ease-in-out;
 	}
 </style>

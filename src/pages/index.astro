@@ -1,12 +1,16 @@
 ---
+import AsiCultivamos from "../components/home/AsiCultivamos.astro";
 import CallToAction from "../components/home/CallToAction.astro";
 import CertificacionAgriculturaFamiliar from "../components/home/CertificacionAgriculturaFamiliar.astro";
 import CompromisoAmbiental from "../components/home/CompromisoAmbiental.astro";
 import CorazonQuisquicha from "../components/home/CorazonQuisquicha.astro";
 import DesarolloConRaices from "../components/home/DesarolloConRaices.astro";
 import Hero from "../components/home/Hero.astro";
+import NuestroProducto from "../components/home/NuestroProducto.astro";
+import Porque from "../components/home/Porque.astro";
 import PorqueElegir from "../components/home/PorqueElegir.astro";
 import Productos from "../components/home/Productos.astro";
+import TestimonialMap from "../components/home/TestimonialMap.astro";
 import Ubicacion from "../components/home/Ubicacion.astro";
 import Container from "../components/shared/Container.astro";
 import ScrollAnimation from "../components/shared/ScrollAnimation.astro";
@@ -19,47 +23,17 @@ import Layout from "../layouts/BlogPost.astro";
   metatitle="Productos Agrícolas de Altura | Asociación Los Innovadores de Quisquicha"
   metadescription="Asociación de pequeños productores en Quisquicha, Huarochirí. Arveja, carne, queso fresco, frutas y más, con certificación de Agricultura Familiar del Perú."
   description="Somos la Asociación Los Innovadores de Quisquicha. Cultivamos con compromiso y sostenibilidad desde los Andes de Huarochirí: arveja verde, carnes, queso, habas y más, con el respaldo de Agricultura Familiar del Perú."
-  heroimage="/images/quistana.webp"
-  heroimagethumb="/images/quistana.webp"
+  heroimage="/images/RaizViva.webp"
+  heroimagethumb="/images/RaizViva.webp"
   slug="/"
 >
   <Hero />
 
-  <!-- Sección de certificación oficial -->
-  <CertificacionAgriculturaFamiliar />
+  <Porque />
 
-  <!-- Quiénes somos -->
-  <CorazonQuisquicha />
+  <AsiCultivamos />
 
-  <!-- Por qué elegir nuestros productos -->
-  <PorqueElegir />
-
-  <!-- Visión y modelo de desarrollo -->
-  <DesarolloConRaices />
-
-  <!-- Productos -->
-  <div class="bg-qs-bg-light">
-    <Container>
-      <div class="pt-10 pb-20">
-        <div class="header">
-          <ScrollAnimation animation="fadeInDown" delay={0.3}>
-            <span class="flex flex-col items-center justify-center md:flex-row md:items-center md:gap-4">
-              <p class="subtitle text-qs-accent-blue">¡Haz tu Pedido!</p>
-            </span>
-          </ScrollAnimation>
-
-          <ScrollAnimation animation="fadeInUp" delay={0.6}>
-            <h2 class="title pb-4">
-              Compra con confianza. Productos frescos, directo desde Quisquicha.
-            </h2>
-          </ScrollAnimation>
-        </div>
-
-        <Productos />
-      </div>
-    </Container>
-  </div>
-
-  <CompromisoAmbiental />
-
+  <TestimonialMap />
+  
+  <NuestroProducto />
 </Layout>

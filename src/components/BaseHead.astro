@@ -12,7 +12,7 @@ const absoluteUrl = new URL(Astro.url.pathname, Astro.site);
 const {
 	title,
 	metadescription = "",
-	image = "/images/home/hero-image.webp",
+	image = "/images/home/campo-raiz-viva.webp",
 	updateDate,
 } = Astro.props;
 ---
@@ -24,8 +24,8 @@ const {
 <meta name="language" content="es" />
 <meta name="robots" content="index, follow" />
 <meta name="googlebot" content="index, follow" />
-<meta name="author" content="Quistana" />
-<meta name="copyright" content="Quistana 2025" />
+<meta name="author" content="RaizViva" />
+<meta name="copyright" content="RaizViva 2025" />
 <meta name="geo.region" content="PE" />
 <meta name="geo.placename" content="Lima, Perú" />
 <meta name="geo.position" content="-12.237741487964232;-76.32748288861242" />
@@ -59,7 +59,7 @@ const {
 <link rel="preload" href={image} as="image" fetchpriority="high" />
 <link
 	rel="preload"
-	href="/images/logo/logo-quistana-mobile.webp"
+	href="/images/logo/logo-RaizViva-mobile.webp"
 	as="image"
 	media="(max-width: 640px)"
 	fetchpriority="high"
@@ -82,7 +82,7 @@ const {
 <meta property="og:title" content={title} />
 <meta property="og:description" content={metadescription} />
 <meta property="og:image" content={new URL(image, Astro.url)} />
-<meta property="og:site_name" content="Quistana" />
+<meta property="og:site_name" content="RaizViva" />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
@@ -172,14 +172,14 @@ const {
 	{
 		"@context": "https://schema.org",
 		"@type": "LocalBusiness",
-		"name": "Quistana",
-		"image": "https://quistana.pe/images/logo/logo-quistana.webp",
-		"@id": "https://quistana.pe",
-		"url": "https://quistana.pe",
+		"name": "RaizViva",
+		"image": "https://raizviva.pe/images/logo/logo-raiz-viva.webp",
+		"@id": "https://raizviva.pe",
+		"url": "https://raizviva.pe",
 		"telephone": "+51987082504",
 		"address": {
 			"@type": "PostalAddress",
-			"streetAddress": "Jr. Andahuaylas Lote 09 - Mariatana, Huarochirí, Lima - Perú",
+			"streetAddress": "Calle Lahuaytambo S/N, Lahuaytambo, Huarochirí, Lima - Perú",
 			"addressLocality": "Huarochirí",
 			"addressRegion": "Lima",
 			"postalCode": "15630",
@@ -211,8 +211,8 @@ const {
 			}
 		],
 		"sameAs": [
-			"https://www.facebook.com/Quistana",
-			"https://www.instagram.com/Quistana"
+			"https://www.facebook.com/RaizViva",
+			"https://www.instagram.com/RaizViva"
 		]
 	}
 </script>
@@ -226,25 +226,25 @@ const {
 				"@type": "ListItem",
 				"position": 1,
 				"name": "Inicio",
-				"item": "https://quistana.pe"
+				"item": "https://raizviva.pe"
 			},
 			{
 				"@type": "ListItem",
 				"position": 2,
 				"name": "Productos",
-				"item": "https://quistana.pe/productos"
+				"item": "https://raizviva.pe/productos"
 			},
 			{
 				"@type": "ListItem",
 				"position": 3,
 				"name": "Blog",
-				"item": "https://quistana.pe/blog"
+				"item": "https://raizviva.pe/blog"
 			},
 			{
 				"@type": "ListItem",
 				"position": 4,
 				"name": "Contáctanos",
-				"item": "https://quistana.pe/contactanos"
+				"item": "https://raizviva.pe/contactanos"
 			}
 		]
 	}

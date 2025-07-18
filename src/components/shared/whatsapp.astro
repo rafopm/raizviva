@@ -2,9 +2,8 @@
 import { WHATSAPP } from "../../consts";
 
 ---
-
 <a
-    href={`https://api.whatsapp.com/send?phone=${WHATSAPP}&text=¡Hola!%20Quiero%20saber%20m%C3%A1s%20sobre%20los%20productos%20Quistana.`}
+    href={`https://api.whatsapp.com/send?phone=${WHATSAPP}&text=¡Hola!%20Quiero%20saber%20m%C3%A1s%20sobre%20los%20productos%20RaizViva.`}
     target="_blank"
     class="btn-whatsapp-pulse"
     aria-label="Contactame por Whatsapp"
@@ -26,41 +25,42 @@ import { WHATSAPP } from "../../consts";
 <style>
     .btn-whatsapp-pulse svg {
         fill: white;
-        width: 32px;
-        height: 32px;
+        width: 40px;  /* Aumentado de 32px */
+        height: 40px; /* Aumentado de 32px */
     }
 
     .btn-whatsapp-pulse {
         background: #25d366;
         color: black;
         position: fixed;
-        bottom: 20px;
-        right: 20px;
+        bottom: 30px;  /* Aumentado de 20px */
+        right: 30px;  /* Aumentado de 20px */
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 1;
-        height: 1;
+        width: 64px;   /* Tamaño aumentado */
+        height: 64px;  /* Tamaño aumentado */
         padding: 10px;
         text-decoration: none;
-        border-radius: 100%;
+        border-radius: 50%;
         animation-name: pulse;
         animation-duration: 1.5s;
         animation-timing-function: ease-out;
         animation-iteration-count: infinite;
+        border: 3px solid white; /* Borde blanco para contraste */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra para profundidad */
+        z-index: 1000; /* Asegurar que esté por encima de otros elementos */
     }
 
     @keyframes pulse {
         0% {
-            box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+            box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7), 0 0 0 0 rgba(37, 211, 102, 0.7);
         }
         80% {
-            box-shadow: 0 0 0 14px rgba(37, 211, 102, 0);
+            box-shadow: 0 0 0 14px rgba(255, 255, 255, 0), 0 0 0 20px rgba(37, 211, 102, 0);
         }
-    }
-    .btn-instagram-pulse2 svg {
-        fill: white;
-        width: 32px;
-        height: 32px;
+        100% {
+            box-shadow: 0 0 0 0 rgba(255, 255, 255, 0), 0 0 0 0 rgba(37, 211, 102, 0);
+        }
     }
 </style>

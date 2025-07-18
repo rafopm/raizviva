@@ -1,22 +1,49 @@
 ---
 import { WHATSAPP } from "../../consts";
 import Button from "../shared/Button.astro";
+import Card from "../shared/Card.astro";
+import Icon from "../shared/Icon.astro";
+import ScrollAnimation from "../shared/ScrollAnimation.astro";
+
+// Datos de ejemplo para las cards
+const cardsData = [
+    {
+        title: "100% Orgánico",
+        imgthumburl: "organico",
+        alt: "Alfalfa fresca orgánica de los Andes",
+    },
+    {
+        title: "Cultivo a +3,300 msnm",
+        imgthumburl: "altura",
+        alt: "Cultivo a +3,300 msnm",
+    },
+    {
+        title: "Apoyo Rural & Sostenible",
+        imgthumburl: "apoyo",
+        alt: "Apoyo Rural & Sostenible",
+    },
+    {
+        title: "Entrega rápida y eficaz",
+        imgthumburl: "transporte",
+        alt: "Entrega rápida y eficaz",
+    },
+];
 ---
 
 <section class="hero-container">
     <!-- Imagen del hero -->
     <picture>
         <source
-            srcset="/images/home/hero-image-mobile.webp"
+            srcset="/images/home/campo-raiz-viva-mobile.webp"
             media="(max-width: 480px)"
         />
         <source
-            srcset="/images/home/hero-image-tablet.webp"
+            srcset="/images/home/campo-raiz-viva-tablet.webp"
             media="(max-width: 768px)"
         />
         <img
-            src="/images/home/hero-image.webp"
-            alt="Productos Quistana - Mariatana"
+            src="/images/home/campo-raiz-viva.webp"
+            alt="Productos Raíz Viva"
             class="hero-image"
             loading="eager"
         />
@@ -26,50 +53,102 @@ import Button from "../shared/Button.astro";
     <div class="mx-auto my-auto max-w-7xl relative w-full h-full">
         <div class="text-content gap-4 relative z-50 bg-none mx-2">
             <h1
-                class="animate__animated animate__fadeInLeft delay-0s text-white mt-0 text-2xl md:text-4xl lg:text-6xl xl:text-8xl leading-tight"
+                class="animate__animated animate__fadeInLeft delay-0s text-white mt-0 text-3xl md:text-5xl lg:text-4xl xl:text-6xl leading-tight font-bold-custom"
             >
-                Productos de Altura, Cultivados con Orgullo en los Andes
-                Peruanos
+                Alfalfa viva de los andes:
+                <br class="hidden md:block" />
+                <span
+                    class="text-rv-light text-3xl md:text-5xl lg:text-4xl xl:text-6xl font-semibold"
+                    >Nutrición que se siente, raíces que inspiran.</span
+                >
             </h1>
 
             <p
-                class="animate__animated animate__fadeInLeft delay-1s text-white mt-4 text-xl lg:text-2xl xl:text-4xl hidden lg:block"
+                class="animate__animated animate__fadeInLeft delay-1s text-white mt-4 text-xl lg:text-xl xl:text-2xl hidden lg:block"
             >
-                Desde Quisquicha (3,534 m.s.n.m.), cosechamos con dedicación lo
-                mejor de nuestra tierra para tu mesa.
-                <br class="hidden md:block" />
-                Calidad, esfuerzo y compromiso en cada producto.
+                Cultivada con pasión a 3,300 m s. n. m. por familias andinas de
+                Lahuaytambo, Huarochirí. Alfalfa 100% orgánica, fresca y llena
+                de propósito.
             </p>
 
             <span
                 class="animate__animated animate__fadeInLeft delay-2s flex gap-4 justify-left mt-2 md:mt-6"
             >
                 <Button
-                    text="Quiero Comprar Productos Frescos"
-                    url={`https://wa.me/${WHATSAPP}?text=Me%20interesa%20sus%20productos%20de%20miel%20https://quistana.pe/%20`}
-                    variant="primary"
+                    text="Quiero Comprar Alfalfa"
+                    icon="whatsapp"
+                    iconPosition="left"
+                    style="classic"
+                    color="var(--rv-accent)"
+                    textColor="var(--rv-very-light)"
+                    hoverColor="var(--rv-dark)"
+                    shadowColor="var(--rv-dark)"
+                    size="xl"
+                    href={`https://wa.me/${WHATSAPP}?text=Me%20interesa%20su%20producto%20https://raizviva.pe/%20`}
+                    target="_blank"
+                    rel="noopener noreferrer"
                 />
 
                 <Button
-                    text="Conoce nuestra historia"
-                    url="#certificacion"
-                    variant="secondary"
-                    className="ml-2"
+                    text="Conócenos"
+                    href="#testimonial"
+                    icon="apoyo"
+                    iconPosition="left"
+                    style="classic"
+                    color="var(--rv-light)"
+                    textColor="var(--rv-dark)"
+                    hoverColor="var(--rv-dark)"
+                    hoverTextColor="var(--rv-light)"
+                    shadowColor="var(--rv-dark)"
+                    size="xl"
+                    class="px-20"
                 />
             </span>
         </div>
     </div>
-</section>
 
+    <!-- Cards en la parte inferior del hero -->
+    <div class="cards-container">
+        <div class="cards-grid">
+            {
+                cardsData.map((data, index) => (
+                    <ScrollAnimation
+                        animation="fadeInUp"
+                        delay={index * 0.1}
+                        duration={0.6}
+                        threshold={0.1}
+                        rootMargin="0px 0px -50px 0px"
+                    >
+                        <div class="card-container text-center h-[120px] md:h-[140px] lg:h-[140px] xl:h-[180px] ">
+                            <div class="card-icon-wrapper">
+                                <Icon
+                                    name={data.imgthumburl}
+                                    class:list={["card-icon"]}
+                                    size={80}
+                                    inheritColor={false}
+                                />
+                            </div>
+                            <div class="card-text-wrapper">
+                                <h3 class="card-title">{data.title}</h3>
+                            </div>
+                        </div>
+                    </ScrollAnimation>
+                ))
+            }
+        </div>
+    </div>
+</section>
 <style>
+    /* Estilos base del contenedor hero */
     .hero-container {
         height: 100vh;
-        overflow: hidden;
+        overflow: visible;
         position: relative;
         z-index: 1;
         isolation: isolate;
     }
 
+    /* Estilos de la imagen hero */
     .hero-image {
         position: absolute;
         top: 0;
@@ -81,7 +160,7 @@ import Button from "../shared/Button.astro";
         z-index: 2;
     }
 
-    /* Contenido del texto */
+    /* Estilos del contenido de texto */
     .text-content {
         display: flex;
         flex-direction: column;
@@ -93,64 +172,175 @@ import Button from "../shared/Button.astro";
         left: 0;
         transform: translateY(-50%);
         padding-left: 2rem;
+        gap: 4px;
     }
 
-    .text-content h1 {
+    .text-content h1.font-bold-custom {
+        font-weight: 600;
         text-shadow:
             1px 4px 2px black,
             0 0 1em gray,
             0 0 0.1em gray;
+        margin-top: 0;
+        color: white;
     }
 
     .text-content p {
+        font-weight: 600;
         text-shadow:
-            4px 4px 2px var(--qs-dark),
-            0 0 2em var(--qs-dark),
-            0 0 0.3em var(--qs-dark);
+            4px 4px 2px var(--rv-dark),
+            0 0 2em var(--rv-dark),
+            0 0 0.3em var(--rv-dark);
+        margin-top: 1rem;
     }
 
-    /* Responsive para tablets y móviles */
-    @media (max-width: 1024px) {
+    /* Estilos de las cards */
+    .cards-container {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 60;
+        transform: translateY(5%);
+    }
+
+    .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0;
+    }
+
+    .card-container {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: space-between;
+        padding: 0;
+        border-radius: 10px;
+        overflow: hidden;
+        background-color: rgba(var(--rv-dark-rgb), 0.85);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+        transition:
+            transform 0.3s ease-in-out,
+            filter 0.3s ease-in-out;
+    }
+
+    .card-container:hover {
+        transform: scale(1.05);
+        filter: saturate(1.3);
+    }
+
+    /* Sección del ícono (60%) */
+    .card-icon-wrapper {
+        flex: 0 0 60%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+    }
+
+    .card-icon {
+        max-width: 80px;
+        max-height: 80px;
+        width: 100%;
+        height: auto;
+    }
+
+    /* Sección del texto (40%) */
+    .card-text-wrapper {
+        flex: 0 0 40%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+    }
+
+    .card-title {
+        text-align: center;
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--rv-very-light);
+        line-height: 1.2;
+    }
+
+    .card-container:hover {
+        transform: scale(1.05);
+        filter: saturate(1.3);
+    }
+
+    /* Media queries responsive */
+    @media (max-width: 1023px) {
         .text-content {
             width: 70%;
             padding-left: 1.5rem;
+        }
+
+        .cards-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            padding: 0 1.5rem;
         }
     }
 
     @media (max-width: 768px) {
         .text-content {
-            padding: 1.5rem;
             width: 90%;
             left: 50%;
             transform: translate(-50%, 0%);
-            padding-left: 1.5rem;
+            padding: 1.5rem;
+            top: 400px;
         }
 
-        .text-content h1 {
-            font-size: 2.5rem;
-        }
-
-        .text-content p {
-            font-size: 1.25rem;
+        .cards-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            padding: 0 1rem;
         }
     }
 
     @media (max-width: 480px) {
+        .hero-container,
+        picture {
+            margin: 0;
+            padding: 0;
+        }
+
+        .hero-image {
+            width: 100vw;
+            height: 100vh;
+        }
+
         .text-content {
-            padding: 1rem;
             width: 92%;
-            padding-left: 1rem;
+            padding: 1rem;
+            top: 240px;
         }
-        .text-content h1 {
-            font-size: 1.8rem;
-            line-height: 1.2;
+
+        .cards-container {
+            transform: none !important;
         }
-        .text-content p {
-            font-size: 1rem;
+
+        .cards-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+            padding: 0 1rem;
         }
     }
 
-    /* Ajuste especial para móviles en landscape */
+    /* Media queries para orientación */
+    @media (max-width: 768px) and (orientation: portrait) {
+        .text-content {
+            width: 100%;
+            left: 0;
+            transform: translateY(-50%);
+            padding-left: 1.5rem;
+        }
+    }
+
     @media (max-width: 768px) and (orientation: landscape) {
         .text-content {
             width: 70%;
@@ -158,28 +348,20 @@ import Button from "../shared/Button.astro";
             transform: translateY(-50%);
             padding-left: 1.5rem;
         }
-        .text-content h1 {
-            font-size: 2rem;
-        }
-    }
 
-    @media (max-width: 480px) {
-        .hero-container {
-            margin: 0;
-            padding: 0;
+        .cards-grid {
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.75rem;
+            padding: 0 1rem;
         }
 
-        picture {
-            display: block;
-            margin: 0;
-            padding: 0;
+        .card-container {
+            height: 160px;
+            padding: 0.5rem;
         }
 
-        .hero-image {
-            margin: 0;
-            padding: 0;
-            width: 100vw;
-            height: 100vh;
+        .card-icon {
+            width: 80px;
         }
     }
 </style>

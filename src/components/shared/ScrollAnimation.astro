@@ -49,19 +49,19 @@ const formatDuration = (duration: number | string): string => {
   data-threshold={threshold}
   data-root-margin={rootMargin}
   data-trigger-once={triggerOnce}
-  style="opacity: 0;"
 >
   <slot />
 </div>
 
 <style>
   .scroll-animate {
+    opacity: 0;
     transition: opacity 0.3s ease;
   }
 
-  /* .scroll-animate.animate {
+  .scroll-animate.animate {
     opacity: 1 !important;
-  } */
+  }
 
   /* Animaciones */
   @keyframes fadeInUp {
@@ -89,7 +89,7 @@ const formatDuration = (duration: number | string): string => {
   @keyframes fadeInLeft {
     from {
       opacity: 0;
-      transform: translateX(-30px);
+      transform: translateX(-50px);
     }
     to {
       opacity: 1;
@@ -100,7 +100,7 @@ const formatDuration = (duration: number | string): string => {
   @keyframes fadeInRight {
     from {
       opacity: 0;
-      transform: translateX(30px);
+      transform: translateX(50px);
     }
     to {
       opacity: 1;
@@ -201,8 +201,7 @@ const formatDuration = (duration: number | string): string => {
   }
 </style>
 
-<script >
-
+<script>
   class ScrollAnimationManager {
     private observers: Map<string, IntersectionObserver> = new Map();
     
@@ -301,7 +300,7 @@ const formatDuration = (duration: number | string): string => {
     scrollAnimationManager.init();
   });
   
-  // Reinicializar en navegación SPA de Astro "astro:page-load"
+  // Reinicializar en navegación SPA de Astro
   document.addEventListener('astro:after-swap', () => {
     scrollAnimationManager.init();
   });
@@ -314,5 +313,4 @@ const formatDuration = (duration: number | string): string => {
       scrollAnimationManager.init();
     }, 250);
   });
-
 </script>

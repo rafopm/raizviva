@@ -92,7 +92,7 @@ const cards = [
         padding: 4rem 0;
         display: flex;
         align-items: center;
-        background-color: var(--qs-bg-light);
+        background-color: var(--rv-bg-light);
     }
 
     .header {
@@ -101,12 +101,12 @@ const cards = [
     }
 
     .subtitle {
-        color: var(--qs-text-dark);
+        color: var(--rv-text-dark);
         font-family: var(--font-secondary);
     }
 
     .title {
-        color: var(--qs-dark);
+        color: var(--rv-dark);
         font-family: var(--font-primary);
     }
 
@@ -119,12 +119,12 @@ const cards = [
     }
 
     .card {
-        background: var(--qs-accent-blue);
+        background: var(--rv-accent-blue);
         border-radius: 20px;
         padding: 2.5rem 2rem;
         text-align: center;
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 0 4px 20px rgba(var(--qs-accent-blue-rgb), 0.15);
+        box-shadow: 0 4px 20px rgba(var(--rv-accent-blue-rgb), 0.15);
         position: relative;
         overflow: hidden;
         height: 100%;
@@ -132,7 +132,7 @@ const cards = [
         flex-direction: column;
         min-height: 350px;
         cursor: pointer;
-        border: 1px solid rgba(var(--qs-accent-blue-rgb), 0.1);
+        border: 1px solid rgba(var(--rv-accent-blue-rgb), 0.1);
     }
 
     .card::after {
@@ -142,7 +142,7 @@ const cards = [
         left: 50%;
         width: 0;
         height: 0;
-        background: radial-gradient(circle, rgba(var(--qs-text-light-rgb), 0.3), transparent);
+        background: radial-gradient(circle, rgba(var(--rv-text-light-rgb), 0.3), transparent);
         border-radius: 50%;
         transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         transform: translate(-50%, -50%);
@@ -151,10 +151,10 @@ const cards = [
 
     .card:hover {
         transform: translateY(-12px) rotateY(5deg) rotateX(2deg);
-        box-shadow: 0 20px 40px rgba(var(--qs-accent-blue-rgb), 0.3), 
-                    0 0 20px rgba(var(--qs-accent-blue-rgb), 0.2);
-        background: linear-gradient(115deg, var(--qs-bg-very-light), var(--qs-bg-light), var(--qs-accent));
-        border: 2px solid rgba(var(--qs-text-light-rgb), 0.3);
+        box-shadow: 0 20px 40px rgba(var(--rv-accent-blue-rgb), 0.3), 
+                    0 0 20px rgba(var(--rv-accent-blue-rgb), 0.2);
+        background: linear-gradient(115deg, var(--rv-bg-very-light), var(--rv-bg-light), var(--rv-accent));
+        border: 2px solid rgba(var(--rv-text-light-rgb), 0.3);
     }
 
     .card:hover::after {
@@ -173,15 +173,15 @@ const cards = [
     }
 
     .card-icon {
-        color: var(--qs-dark);
+        color: var(--rv-dark);
         transition: all 0.4s ease;
-        filter: drop-shadow(0 2px 4px rgba(var(--qs-dark-rgb), 0.2));
+        filter: drop-shadow(0 2px 4px rgba(var(--rv-dark-rgb), 0.2));
     }
 
     .card:hover .card-icon {
         transform: scale(1.15) rotate(-5deg);
-        color: var(--qs-text-dark);
-        filter: drop-shadow(0 4px 8px rgba(var(--qs-dark-rgb), 0.3));
+        color: var(--rv-text-dark);
+        filter: drop-shadow(0 4px 8px rgba(var(--rv-dark-rgb), 0.3));
     }
 
     .card-content {
@@ -194,7 +194,7 @@ const cards = [
     }
 
     .card-title {
-        color: var(--qs-bg-light);
+        color: var(--rv-bg-light);
         font-size: 1.2rem;
         font-weight: 700;
         margin: 0 0 1rem 0;
@@ -207,13 +207,13 @@ const cards = [
     }
 
     .card:hover .card-title {
-        color: var(--qs-text-dark);
+        color: var(--rv-text-dark);
         transform: translateY(-2px);
-        text-shadow: 0 2px 4px rgba(var(--qs-dark-rgb), 0.1);
+        text-shadow: 0 2px 4px rgba(var(--rv-dark-rgb), 0.1);
     }
 
     .card-description {
-        color: var(--qs-text-light);
+        color: var(--rv-text-light);
         margin: 0;
         opacity: 0.9;
         transition: all 0.3s ease;
@@ -225,7 +225,7 @@ const cards = [
 
     .card:hover .card-description {
         opacity: 1;
-        color: var(--qs-text-dark);
+        color: var(--rv-text-dark);
         transform: translateY(-1px);
     }
 

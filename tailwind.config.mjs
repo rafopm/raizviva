@@ -7,105 +7,103 @@ export default {
     extend: {
       fontFamily: {
         primary: 'var(--font-primary)',
-        secondary: 'var(--font-secondary)',
       },
-	  fontSize: {
-		'80px': '80px',
-		'60px': '60px',
-    '50px': '50px',
-		'40px': '40px',
-	  }, 
+      fontSize: {
+        '80px': '80px',
+        '60px': '60px',
+        '50px': '50px',
+        '40px': '40px',
+      },
       colors: {
-        'qs': {
-          dark: 'var(--qs-dark)',
-          'bg-very-light': 'var(--qs-bg-very-light)',
-          'bg-light': 'var(--qs-bg-light)',
-          cta: 'var(--qs-cta)',
-          accent: 'var(--qs-accent)',
-          'text-dark': 'var(--qs-text-dark)',
-          'text-light': 'var(--qs-text-light)',
-          'accent-blue': 'var(--qs-accent-blue)',
-          
-          // Versiones RGB para usar con opacidad
-          'dark-rgb': 'var(--qs-dark-rgb)',
-          'bg-very-light-rgb': 'var(--qs-bg-very-light-rgb)',
-          'bg-light-rgb': 'var(--qs-bg-light-rgb)',
-          'cta-rgb': 'var(--qs-cta-rgb)',
-          'accent-rgb': 'var(--qs-accent-rgb)',
-          'text-dark-rgb': 'var(--qs-text-dark-rgb)',
-          'text-light-rgb': 'var(--qs-text-light-rgb)',
-          'accent-blue-rgb': 'var(--qs-accent-blue-rgb)',
+        rv: {
+          dark: 'var(--rv-dark)',
+          'very-dark': 'var(--rv-very-dark)',
+          'very-light': 'var(--rv-very-light)',
+          light: 'var(--rv-light)',
+          gray: 'var(--rv-gray)',
+          cta: 'var(--rv-cta)',
+          accent: 'var(--rv-accent)',
+
+          // RGB variables para usar con opacidad o backgrounds dinámicos
+          'dark-rgb': 'var(--rv-dark-rgb)',
+          'very-dark-rgb': 'var(--rv-very-dark-rgb)',
+          'very-light-rgb': 'var(--rv-very-light-rgb)',
+          'light-rgb': 'var(--rv-light-rgb)',
+          'gray-rgb': 'var(--rv-gray-rgb)',
+          'cta-rgb': 'var(--rv-cta-rgb)',
+          'accent-rgb': 'var(--rv-accent-rgb)',
         },
-        
         transparent: 'transparent',
       },
 
       typography: {
         DEFAULT: {
           css: {
-            color: 'var(--qs-text-dark)',
+            color: 'var(--rv-dark)',
             maxWidth: '100% !important',
+            fontFamily: 'var(--font-primary)',
+
             h1: {
               fontSize: '3.052em',
-              color: 'var(--qs-text-dark)',
-              fontFamily: 'var(--font-secondary)',
+              color: 'var(--rv-dark)',
               marginBottom: '0.5rem !important',
               lineHeight: '1.2',
+              fontWeight: '900',
             },
             h2: {
               fontSize: '2.441em',
-              color: 'var(--qs-text-dark)',
-              fontFamily: 'var(--font-secondary)',
+              color: 'var(--rv-dark)',
               marginBottom: '0.5rem !important',
               lineHeight: '1.2',
+              fontWeight: '900',
             },
             h3: {
               fontSize: '1.953em',
-              color: 'var(--qs-text-dark)',
-              fontFamily: 'var(--font-secondary)',
+              color: 'var(--rv-dark)',
               marginBottom: '0.5rem !important',
               lineHeight: '1.2',
+              fontWeight: '900',
             },
             h4: {
               fontSize: '1.563em',
-              color: 'var(--qs-text-dark)',
-              fontFamily: 'var(--font-secondary)',
+              color: 'var(--rv-dark)',
               marginBottom: '0.5rem !important',
               lineHeight: '1.2',
+              fontWeight: '900',
             },
             h5: {
               fontSize: '1.25em',
-              color: 'var(--qs-text-dark)',
-              fontFamily: 'var(--font-secondary)',
+              color: 'var(--rv-dark)',
               marginBottom: '0.5rem !important',
               lineHeight: '1.2',
+              fontWeight: '700',
             },
             p: {
-              color: 'var(--qs-text-dark)',
+              color: 'var(--rv-dark)',
               fontFamily: 'var(--font-primary)',
               marginBottom: '1em !important',
             },
             strong: {
-              color: 'var(--qs-text-dark)',
+              color: 'var(--rv-dark)',
               fontWeight: '700',
             },
             a: {
-              color: 'var(--qs-accent)',
+              color: 'var(--rv-accent)',
               fontFamily: 'var(--font-primary)',
-              '&:hover': {
-                color: 'var(--qs-cta)',
-              },
               textDecoration: 'none !important',
+              '&:hover': {
+                color: 'var(--rv-cta)',
+              },
             },
             button: {
-              color: 'var(--qs-text-light) !important',
+              color: 'var(--rv-light) !important',
               '&:hover': {
-                color: 'var(--qs-text-light)',
+                color: 'var(--rv-light)',
               },
               textDecoration: 'none !important',
             },
             th: {
-              color: 'var(--qs-text-dark)',
+              color: 'var(--rv-dark)',
             },
             ul: {
               listStyleType: 'disc !important',
@@ -124,12 +122,12 @@ export default {
               flexDirection: 'column',
             },
             li: {
-              color: 'var(--qs-text-dark)',
+              color: 'var(--rv-dark)',
               marginBottom: '0.2rem',
               fontFamily: 'var(--font-primary)',
             },
             hr: {
-              borderColor: 'var(--qs-text-dark)',
+              borderColor: 'var(--rv-dark)',
               borderWidth: '1px',
               borderStyle: 'solid',
             },
@@ -138,8 +136,6 @@ export default {
       },
     },
   },
-  plugins: [
-    typography
-  ],
-  darkMode: 'class', // Habilitar modo oscuro basado en clases
-}
+  plugins: [typography],
+  darkMode: 'class',
+};

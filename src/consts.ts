@@ -1,12 +1,15 @@
-export const SITE_TITLE = 'Los Innovadores de Quisquicha | Agricultura Familiar de Altura';
-export const SITE_DESCRIPTION = 'Productos agrícolas cultivados a más de 3,500 msnm en Quisquicha, Mariatana. Arveja verde, carnes, queso fresco y más, directo del productor. Calidad, sostenibilidad y compromiso rural.';
+export const SITE_TITLE = 'Rikchariy Chacrayoq | Alfalfa Orgánica de los Andes Peruanos';
+export const SITE_DESCRIPTION = 'Alfalfa orgánica de calidad superior, cultivada a +3,300 msnm por familias en Lahuaytambo. Nutrición pura para ganado y equinos. Apoya el desarrollo rural andino.';
 
-export const WHATSAPP = '+51949249443';
-export const DIRECCION = 'Jr. Andahuaylas Lote 09 - Mariatana, Huarochirí, Lima - Perú';
-export const TELEFONO = '+51949249443';
-export const EMAIL = 'asociasonlosinnovadoresdequis@gmail.com';
+export const WHATSAPP = '+51988021480';
+export const DIRECCION = 'Calle Lahuaytambo S/N, Lahuaytambo, Huarochirí, Lima - Perú';
+export const TELEFONO = '+51988021480';
+export const EMAIL = 'rikchariychacrayoq@gmail.com';
 
-export const FACEBOOK = ''; // Si no tienen red aún, se puede dejar vacío o poner 'Próximamente'
+export const LOGO_MOBILE = '/images/logo-mobile.png';
+export const LOGO_DESKTOP = '/images/logo-desktop.png';
+
+export const FACEBOOK = ''; 
 export const INSTAGRAM = '';
 export const TWITTER = '';
 export const YOUTUBE = '';

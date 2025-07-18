@@ -1,105 +1,130 @@
+/* === FUENTES: Goldplay === */
 @font-face {
-    font-family: 'Humanst521 BT';
-    src: url('/fonts/humanst521bt.woff2') format('woff2'),
-         url('/fonts/humanst521bt.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
+	font-family: 'Goldplay';
+	src: url('/fonts/Goldplay-Regular.woff2') format('woff2'),
+		url('/fonts/Goldplay-Regular.woff') format('woff');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
 }
 
 @font-face {
-    font-family: 'Bree';
-    src: url('/fonts/bree-regular.woff2') format('woff2'),
-         url('/fonts/bree-regular.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
+	font-family: 'Goldplay';
+	src: url('/fonts/Goldplay-SemiBold.woff2') format('woff2'),
+		url('/fonts/Goldplay-SemiBold.woff') format('woff');
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
 }
 
 @font-face {
-    font-family: 'Bree';
-    src: url('/fonts/bree-bold.woff2') format('woff2'),
-         url('/fonts/bree-bold.woff') format('woff');
-    font-weight: bold; 
-    font-style: normal;
-    font-display: swap;
+	font-family: 'Goldplay';
+	src: url('/fonts/Goldplay-BoldIt.woff2') format('woff2'),
+		url('/fonts/Goldplay-BoldIt.woff') format('woff');
+	font-weight: 700;
+	font-style: italic;
+	font-display: swap;
 }
- 
+
+@font-face {
+	font-family: 'Goldplay';
+	src: url('/fonts/Goldplay-Black.woff2') format('woff2'),
+		url('/fonts/Goldplay-Black.woff') format('woff');
+	font-weight: 900;
+	font-style: normal;
+	font-display: swap;
+}
+
+/* === VARIABLES GLOBALES === */
 :root {
-	/* Colores principales */
-	--qs-dark: #613F2C;
-	--qs-dark-rgb: 97, 63, 44;
-	--qs-bg-very-light: #F2F7FC;
-	--qs-bg-very-light-rgb: 242, 247, 252;
-	--qs-bg-light: #E1EDF8;
-	--qs-bg-light-rgb: 225, 237, 248; 
-	--qs-cta: #98CA48;
-	--qs-cta-rgb: 152, 202, 72;
-	--qs-accent: #40BFFF;
-	--qs-accent-rgb: 64, 191, 255;
-	--qs-text-dark: #222F49;
-	--qs-text-dark-rgb: 34, 47, 73;
-	--qs-text-light: #FFFFFF;
-	--qs-text-light-rgb: 255, 255, 255;
-	--qs-accent-blue: #3A63AC;
-	--qs-accent-blue-rgb: 58, 99, 172;
+	--rv-dark: #2B4E19;
+	--rv-dark-rgb: 43, 78, 25;
 
-	--qs-primary: var(--qs-accent-blue);
-	--qs-primary-rgb: var(--qs-accent-blue-rgb);
+	--rv-very-dark: #132B08;
+	--rv-very-dark-rgb: 19, 43, 8;
 
-	/* Fuentes */
-	--font-primary: 'Bree', sans-serif;
-	--font-secondary: 'Humanst521 BT', serif;
+	--rv-very-light: #F2FCE9;
+	--rv-very-light-rgb: 242, 252, 233;
 
-	/* Filtros para iconos */
-	--qs-accent-filter: invert(69%) sepia(90%) saturate(426%) hue-rotate(349deg) brightness(98%) contrast(94%);
-	--qs-blue-filter: invert(28%) sepia(22%) saturate(1198%) hue-rotate(157deg) brightness(93%) contrast(89%);
+	--rv-light: #E3F8CF;
+	--rv-light-rgb: 227, 248, 207;
+
+	--rv-gray: #F6F6F6;
+	--rv-gray-rgb: 246, 246, 246;
+
+	--rv-cta: #5EB623;
+	--rv-cta-rgb: 94, 182, 35;
+
+	--rv-accent: #0A7F36;
+	--rv-accent-rgb: 10, 127, 54;
+
+	--font-primary: 'Goldplay', sans-serif;
 }
 
+/* === MODO OSCURO === */
 .dark {
-	--qs-dark: #F2F7FC;
-	--qs-dark-rgb: 242, 247, 252;
-	--qs-bg-very-light: #613F2C;
-	--qs-bg-very-light-rgb: 97, 63, 44;
-	--qs-bg-light: #613F2C;
-	--qs-bg-light-rgb: 97, 63, 44;
-	--qs-text-dark: #FFFFFF;
-	--qs-text-dark-rgb: 255, 255, 255;
-	--qs-text-light: #613F2C;
-	--qs-text-light-rgb: 97, 63, 44;
+	--rv-dark: #F2FCE9;
+	--rv-dark-rgb: 242, 252, 233;
+
+	--rv-very-light: #132B08;
+	--rv-very-light-rgb: 19, 43, 8;
+
+	--rv-light: #2B4E19;
+	--rv-light-rgb: 43, 78, 25;
+
+	--rv-gray: #1E1E1E;
+
+	--rv-cta: #A6E97A;
+	--rv-accent: #59DC8D;
 }
 
-.icon-color-accent {
-	filter: var(--qs-accent-filter);
+.text-dark {
+	color: var(--rv-dark);
 }
 
-.icon-color-blue {
-	filter: var(--qs-blue-filter);
+.bg-dark {
+	background-color: var(--rv-dark);
 }
 
-.font-primary {
-	font-family: var(--font-primary);
+.text-light {
+	color: var(--rv-light);
 }
 
-.font-secondary {
-	font-family: var(--font-secondary);
-}
-
-.font-tertiary {
-	font-family: var(--font-tertiary);
-}
-
+/* === UTILIDADES === */
 body {
 	font-family: var(--font-primary);
 	margin: 0;
 	padding: 0;
+	position: relative;
+	z-index: 1;
 	text-align: left;
 	word-wrap: break-word;
 	overflow-wrap: break-word;
-	color: var(--qs-text-dark);
-	background-color: var(--qs-bg-very-light);
 	font-size: 1rem;
+	color: var(--rv-dark);
+	background-color: var(--rv-very-light);
 }
+
+body::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-image: url('images/pattern-leaf.svg');
+	background-repeat: repeat;
+	background-size: 40px 62.4px;
+	z-index: -5;
+	pointer-events: none;
+}
+
+.dark body::after {
+	opacity: 0.12;
+	filter: invert(80%);
+	/* Opcional: ajusta el patrón para modo oscuro */
+}
+
 
 h1,
 h2,
@@ -108,9 +133,10 @@ h4,
 h5,
 h6 {
 	margin: 0 0 0.5rem 0;
-	color: var(--qs-text-dark);
-	line-height: 1.2;
-	font-family: var(--font-secondary);
+	font-family: var(--font-primary);
+	font-weight: 900;
+	font-display: swap;
+	color: var(--rv-dark);
 }
 
 h1 {
@@ -133,22 +159,17 @@ h5 {
 	font-size: 1.25em;
 }
 
-strong,
-b {
-	font-weight: 700;
-}
-
 a {
-	color: var(--qs-accent);
+	color: var(--rv-accent);
 }
 
 a:hover {
-	color: var(--qs-cta);
+	color: var(--rv-cta);
 }
 
 p {
 	margin-bottom: 1em;
-	color: var(--qs-text-dark)
+	color: var(--rv-dark);
 }
 
 .prose p {
@@ -157,19 +178,19 @@ p {
 
 .title {
 	text-align: center;
-	color: var(--qs-dark);
 	font-size: 48px;
+	font-weight: 900;
 	font-family: var(--font-primary);
-	padding: 0;
-
+	color: var(--rv-dark);
+	line-height: 1.2;
 }
 
 .subtitle {
 	font-weight: 600;
 	font-size: 32px;
-	font-family: var(--font-secondary);
+	font-family: var(--font-primary);
 	margin: 0 20px;
-	color: var(--qs-accent-blue)
+	color: var(--rv-accent);
 }
 
 .paragraph {
@@ -178,29 +199,27 @@ p {
 	font-family: var(--font-primary);
 }
 
-/* Scrollbar personalizada */
+/* === SCROLLBAR === */
 ::-webkit-scrollbar {
 	width: 12px;
 }
 
 ::-webkit-scrollbar-thumb {
-	background-image: linear-gradient(to bottom, var(--qs-bg-very-light), var(--qs-accent));
-	border: 1px solid var(--qs-bg-light);
+	background-image: linear-gradient(to bottom, var(--rv-light), var(--rv-accent));
+	border: 1px solid var(--rv-very-light);
 	border-radius: 10px;
 }
 
 ::-webkit-scrollbar-track {
-	background-color: var(--qs-bg-very-light);
+	background-color: var(--rv-very-light);
 	border-radius: 10px;
 }
 
+
+/* === MEDIA QUERIES === */
 @media (max-width: 720px) {
 	body {
 		font-size: 18px;
-	}
-
-	main {
-		padding: 0;
 	}
 
 	.title {
@@ -216,49 +235,49 @@ p {
 	}
 }
 
-/* Clases de utilidad para Tailwind */
+/* === TAILWIND INTEGRACIÓN === */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer utilities {
-	.bg-qs-dark {
-		background-color: var(--qs-dark);
+	.bg-rv-dark {
+		background-color: var(--rv-dark);
 	}
 
-	.bg-qs-very-light {
-		background-color: var(--qs-bg-very-light);
+	.bg-rv-very-light {
+		background-color: var(--rv-very-light);
 	}
 
-	.bg-qs-light {
-		background-color: var(--qs-bg-light);
+	.bg-rv-light {
+		background-color: var(--rv-light);
 	}
 
-	.bg-qs-cta {
-		background-color: var(--qs-cta);
+	.bg-rv-gray {
+		background-color: var(--rv-gray);
 	}
 
-	.bg-qs-accent {
-		background-color: var(--qs-accent);
+	.bg-rv-cta {
+		background-color: var(--rv-cta);
 	}
 
-	.bg-qs-blue {
-		background-color: var(--qs-accent-blue);
+	.bg-rv-accent {
+		background-color: var(--rv-accent);
 	}
 
-	.text-qs-dark {
-		color: var(--qs-text-dark);
+	.text-rv-dark {
+		color: var(--rv-dark);
 	}
 
-	.text-qs-light {
-		color: var(--qs-text-light);
+	.text-rv-light {
+		color: var(--rv-light);
 	}
 
-	.border-qs-accent {
-		border-color: var(--qs-accent);
+	.border-rv-cta {
+		border-color: var(--rv-cta);
 	}
 
-	.border-qs-cta {
-		border-color: var(--qs-cta);
+	.border-rv-accent {
+		border-color: var(--rv-accent);
 	}
 }

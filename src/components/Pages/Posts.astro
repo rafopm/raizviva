@@ -24,7 +24,7 @@ const [featuredPost, ...otherPosts] = posts; // El primer post es el destacado
     />
     <div class="featured-content">
       <span class="flex">
-        <Calendar width="20" height="20" color="var(--qs-text-dark)" />
+        <Calendar width="20" height="20" color="var(--rv-text-dark)" />
         <span class="post-date my-0 ml-2 text-qs-text-dark"
           >{featuredPost.data.pubDate.toLocaleDateString()}</span
         >
@@ -68,7 +68,7 @@ const [featuredPost, ...otherPosts] = posts; // El primer post es el destacado
     display: grid;
     grid-template-columns: 1fr;
     margin-bottom: 2em;
-    color: var(--qs-text-dark);
+    color: var(--rv-text-dark);
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
@@ -85,17 +85,17 @@ const [featuredPost, ...otherPosts] = posts; // El primer post es el destacado
   }
 
   .icon-calendar {
-    fill: var(--qs-accent);
+    fill: var(--rv-accent);
   }
 
   .featured-content h2 {
-    color: var(--qs-text-dark);
+    color: var(--rv-text-dark);
     font-size: 2em;
     margin: 0.5em 0;
   }
 
   .post-date {
-    color: var(--qs-text-dark);
+    color: var(--rv-text-dark);
     font-size: 0.9em;
   }
 
@@ -103,7 +103,7 @@ const [featuredPost, ...otherPosts] = posts; // El primer post es el destacado
     display: inline-block;
     margin-top: 1em;
     padding: 0.5em 1.5em;
-    background-color: var(--qs-accent);
+    background-color: var(--rv-accent);
     color: white;
     text-decoration: none;
     border-radius: 5px;

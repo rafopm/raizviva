@@ -4,6 +4,7 @@ import Button from "../shared/Button.astro";
 import Container from "../shared/Container.astro";
 import Icon from "../shared/Icon.astro";
 import ScrollAnimation from "../shared/ScrollAnimation.astro";
+import VideoLazy from "../shared/VideoLazy.astro";
 
 // AlfalfaProduct.astro
 ---
@@ -28,23 +29,12 @@ import ScrollAnimation from "../shared/ScrollAnimation.astro";
             <div class="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
                 <!-- Video Section -->
                 <div class="order-2 md:order-1">
-                    <div
-                        class="aspect-[9/16] w-full max-w-md mx-auto relative overflow-hidden rounded-lg shadow-xl"
-                    >
-                        <!-- Video container with absolute positioning -->
-                        <div class="absolute inset-0 w-full h-full">
-                            <iframe
-                                src="https://www.youtube-nocookie.com/embed/rfWsXOlmVEU?autoplay=1&mute=1&loop=1&playlist=rfWsXOlmVEU&controls=0&modestbranding=0&rel=0&showinfo=0&disablekb=1"
-                                title="Alfalfa Rikchariy - Video del Producto"
-                                class="absolute top-0 left-0 w-full h-full"
-                                frameborder="0"
-                                allow="autoplay; encrypted-media"
-                                allowfullscreen
-                            >
-                            </iframe>
-                        </div>
-                    </div>
-                </div>
+                    <VideoLazy
+                      client:visible
+                      videoId="rfWsXOlmVEU"
+                      title="Alfalfa Rikchariy - Video del Producto"
+                    />
+                  </div>
 
                 <!-- Product Info Section -->
                 <div class="order-1 md:order-2 text-center md:text-left">

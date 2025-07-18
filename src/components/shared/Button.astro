@@ -1,5 +1,6 @@
 ---
 interface Props {
+  ariaLabel?: string;
   href?: string;
   target?: "_blank" | "_self" | "_parent" | "_top";
   rel?: string;
@@ -29,6 +30,7 @@ interface Props {
 }
 
 const {
+  ariaLabel,
   href,
   target,
   rel,
@@ -93,7 +95,7 @@ const buttonClasses = [
   baseClasses,
   sizeClasses[size],
   styleClasses[style],
-  `btn-${style}`, 
+  `btn-${style}`,
   fullWidth ? "w-full" : "",
   disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer",
   className,
@@ -103,6 +105,12 @@ const buttonClasses = [
 
 const IconComponent = showIcon ? (await import("./Icon.astro")).default : null;
 const buttonId = `btn-${Math.random().toString(36).substr(2, 9)}`;
+
+if (isIconOnly && !ariaLabel) {
+  console.warn(
+    "El botón con solo ícono requiere un atributo 'ariaLabel' para accesibilidad."
+  );
+}
 ---
 
 {
@@ -113,6 +121,7 @@ const buttonId = `btn-${Math.random().toString(36).substr(2, 9)}`;
       rel={rel}
       class={`${buttonClasses} ${buttonId}`}
       style={`--btn-bg: ${baseColor}; --btn-text: ${textColor}; --btn-hover: ${autoHoverColor}; --btn-hover-text: ${autoHoverTextColor}; --btn-border: ${baseColor}; --btn-shadow: ${autoShadowColor};`}
+      aria-label={ariaLabel || text}
       {...rest}
     >
       {showIcon && (iconPosition === "left" || isIconOnly) && IconComponent && (
@@ -134,6 +143,7 @@ const buttonId = `btn-${Math.random().toString(36).substr(2, 9)}`;
       disabled={disabled}
       class={`${buttonClasses} ${buttonId}`}
       style={`--btn-bg: ${baseColor}; --btn-text: ${textColor}; --btn-hover: ${autoHoverColor}; --btn-hover-text: ${autoHoverTextColor}; --btn-border: ${baseColor}; --btn-shadow: ${autoShadowColor};`}
+      aria-label={ariaLabel || text}
       {...rest}
     >
       {showIcon && (iconPosition === "left" || isIconOnly) && IconComponent && (

@@ -1,5 +1,5 @@
 ---
-import Button from './Button.astro';
+import Button from "./Button.astro";
 import { WHATSAPP } from "../../consts";
 
 interface Props {
@@ -8,7 +8,11 @@ interface Props {
   message?: string;
 }
 
-const { text = "Comprar", variant = "primary", message = "Me interesa este producto" } = Astro.props;
+const {
+  text = "Comprar",
+  variant = "primary",
+  message = "Me interesa este producto",
+} = Astro.props;
 const currentUrl = Astro.url.href;
 const encodedMessage = encodeURIComponent(`${message}: ${currentUrl}`);
 const whatsappUrl = `https://wa.me/${WHATSAPP}?text=${encodedMessage}`;
@@ -19,7 +23,8 @@ const whatsappUrl = `https://wa.me/${WHATSAPP}?text=${encodedMessage}`;
   justify-content: center;
   margin: 2.5rem 0;
 ">
-  <Button 
+  <Button
+    ariaLabel="Comprar Producto"
     text={text}
     url={whatsappUrl}
     variant={variant}

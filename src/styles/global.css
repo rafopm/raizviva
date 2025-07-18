@@ -235,6 +235,15 @@ p {
 	}
 }
 
+
+@media (prefers-reduced-motion: reduce) {
+	* {
+	  animation: none !important;
+	  transition: none !important;
+	}
+  }
+  
+
 /* === TAILWIND INTEGRACIÓN === */
 @tailwind base;
 @tailwind components;

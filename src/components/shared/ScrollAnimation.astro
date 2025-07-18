@@ -57,6 +57,7 @@ const formatDuration = (duration: number | string): string => {
   .scroll-animate {
     opacity: 0;
     transition: opacity 0.3s ease;
+    will-change: transform, opacity;
   }
 
   .scroll-animate.animate {

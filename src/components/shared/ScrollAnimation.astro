@@ -1,7 +1,15 @@
 ---
 // ScrollAnimation.astro
 export interface Props {
-  animation?: 'fadeInUp' | 'fadeInDown' | 'fadeInLeft' | 'fadeInRight' | 'slideInUp' | 'slideInDown' | 'zoomIn' | 'bounceIn';
+  animation?:
+    | "fadeInUp"
+    | "fadeInDown"
+    | "fadeInLeft"
+    | "fadeInRight"
+    | "slideInUp"
+    | "slideInDown"
+    | "zoomIn"
+    | "bounceIn";
   delay?: number | string;
   duration?: number | string;
   threshold?: number;
@@ -11,12 +19,12 @@ export interface Props {
 }
 
 const {
-  animation = 'fadeInUp',
+  animation = "fadeInUp",
   delay = 0,
   duration = 0.6,
   threshold = 0.1,
-  rootMargin = '0px 0px -50px 0px',
-  class: className = '',
+  rootMargin = "0px 0px -50px 0px",
+  class: className = "",
   triggerOnce = true,
 } = Astro.props;
 
@@ -25,22 +33,24 @@ const uniqueId = `scroll-animate-${Math.random().toString(36).substr(2, 9)}`;
 
 // Convertir delay a formato CSS
 const formatDelay = (delay: number | string): string => {
-  if (typeof delay === 'number') {
+  if (typeof delay === "number") {
     return `${delay}s`;
   }
-  return delay.toString().includes('s') ? delay.toString() : `${delay}s`;
+  return delay.toString().includes("s") ? delay.toString() : `${delay}s`;
 };
 
 // Convertir duration a formato CSS
 const formatDuration = (duration: number | string): string => {
-  if (typeof duration === 'number') {
+  if (typeof duration === "number") {
     return `${duration}s`;
   }
-  return duration.toString().includes('s') ? duration.toString() : `${duration}s`;
+  return duration.toString().includes("s")
+    ? duration.toString()
+    : `${duration}s`;
 };
 ---
 
-<div 
+<div
   id={uniqueId}
   class={`scroll-animate ${className}`}
   data-animation={animation}
@@ -54,14 +64,18 @@ const formatDuration = (duration: number | string): string => {
 </div>
 
 <style>
-  .scroll-animate {
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    will-change: transform, opacity;
-  }
+.scroll-animate {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  will-change: transform, opacity;
+  overflow-wrap: break-word;
+}
+
 
   .scroll-animate.animate {
     opacity: 1 !important;
+    animation-timing-function: ease-out;
+    animation-fill-mode: both;
   }
 
   /* Animaciones */
@@ -205,113 +219,118 @@ const formatDuration = (duration: number | string): string => {
 <script>
   class ScrollAnimationManager {
     private observers: Map<string, IntersectionObserver> = new Map();
-    
+
     init() {
       this.cleanup();
       this.setupAnimations();
     }
-    
+
     cleanup() {
       // Limpiar observers existentes
-      this.observers.forEach(observer => observer.disconnect());
+      this.observers.forEach((observer) => observer.disconnect());
       this.observers.clear();
     }
-    
+
     setupAnimations() {
-      const animateElements = document.querySelectorAll('.scroll-animate');
-      
-      // Agrupar elementos por configuración de observer
-      const observerGroups = new Map<string, HTMLElement[]>();
-      
-      animateElements.forEach(element => {
-        const threshold = parseFloat(element.getAttribute('data-threshold') || '0.1');
-        const rootMargin = element.getAttribute('data-root-margin') || '0px 0px -50px 0px';
-        const key = `${threshold}-${rootMargin}`;
-        
-        if (!observerGroups.has(key)) {
-          observerGroups.set(key, []);
-        }
-        observerGroups.get(key)!.push(element as HTMLElement);
-      });
-      
-      // Crear observer para cada grupo
-      observerGroups.forEach((elements, key) => {
-        const [threshold, rootMargin] = key.split('-', 2);
-        const observer = this.createObserver(
-          parseFloat(threshold),
-          rootMargin.replace(/-/g, ' ')
-        );
-        
-        elements.forEach(element => {
-          const rect = element.getBoundingClientRect();
-          const isVisible = (
-            rect.top <= (window.innerHeight || document.documentElement.clientHeight) && 
-            rect.bottom >= 0
-          );
-          
-          if (isVisible) {
-            this.animateElement(element);
-          } else {
-            observer.observe(element);
-          }
-        });
-        
-        this.observers.set(key, observer);
-      });
+  const animateElements = document.querySelectorAll(".scroll-animate");
+
+  // Agrupar elementos por configuración de observer
+  const observerGroups = new Map<string, HTMLElement[]>();
+
+  animateElements.forEach((element) => {
+    const threshold = element.getAttribute("data-threshold") || "0.1";
+    const rootMargin = element.getAttribute("data-root-margin") || "0px 0px -50px 0px";
+    const key = `${threshold}|${rootMargin}`; // ✅ clave única y segura
+
+    if (!observerGroups.has(key)) {
+      observerGroups.set(key, []);
     }
-    
-    createObserver(threshold: number, rootMargin: string): IntersectionObserver {
-      return new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const element = entry.target as HTMLElement;
-            this.animateElement(element);
-            
-            // Si triggerOnce es true, dejar de observar
-            const triggerOnce = element.getAttribute('data-trigger-once') === 'true';
-            if (triggerOnce) {
-              entry.target.classList.add('animation-complete');
-              this.observers.forEach(obs => obs.unobserve(entry.target));
+
+    observerGroups.get(key)!.push(element as HTMLElement);
+  });
+
+  // Crear observer por cada grupo
+  observerGroups.forEach((elements, key) => {
+    const [thresholdStr, rootMarginStr] = key.split("|"); // ✅ ahora sí
+    const observer = this.createObserver(
+      parseFloat(thresholdStr),
+      rootMarginStr,
+    );
+
+    elements.forEach((element) => {
+      observer.observe(element);
+    });
+
+    this.observers.set(key, observer);
+  });
+}
+
+
+    createObserver(
+      threshold: number,
+      rootMargin: string,
+    ): IntersectionObserver {
+      return new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const element = entry.target as HTMLElement;
+              this.animateElement(element);
+
+              // Si triggerOnce es true, dejar de observar
+              const triggerOnce =
+                element.getAttribute("data-trigger-once") === "true";
+              if (triggerOnce) {
+                entry.target.classList.add("animation-complete");
+                this.observers.forEach((obs) => obs.unobserve(entry.target));
+              }
             }
-          }
-        });
-      }, {
-        threshold,
-        rootMargin
-      });
+          });
+        },
+        {
+          threshold,
+          rootMargin,
+        },
+      );
     }
-    
+
     animateElement(element: HTMLElement) {
-      const animation = element.getAttribute('data-animation') || 'fadeInUp';
-      const delay = element.getAttribute('data-delay') || '0s';
-      const duration = element.getAttribute('data-duration') || '0.6s';
-      
+      const animation = element.getAttribute("data-animation") || "fadeInUp";
+      const delay = element.getAttribute("data-delay") || "0s";
+      const duration = element.getAttribute("data-duration") || "0.6s";
+
       element.style.animationDelay = delay;
       element.style.animationDuration = duration;
-      
-      element.classList.add('animate', `animate-${animation}`);
+
+      element.classList.add("animate", `animate-${animation}`);
     }
   }
-  
+
   // Instancia global del manager
   const scrollAnimationManager = new ScrollAnimationManager();
-  
+
   // Inicializar cuando el DOM esté listo
-  document.addEventListener('astro:page-load', () => {
+  document.addEventListener("astro:page-load", () => {
     scrollAnimationManager.init();
   });
-  
+
   // Reinicializar en navegación SPA de Astro
-  document.addEventListener('astro:after-swap', () => {
+  document.addEventListener("astro:after-swap", () => {
     scrollAnimationManager.init();
   });
-  
+
   // Opcional: reinicializar en cambio de tamaño de ventana
   let resizeTimeout: ReturnType<typeof setTimeout>;
-  window.addEventListener('resize', () => {
+  let lastWidth = window.innerWidth;
+
+  window.addEventListener("resize", () => {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(() => {
-      scrollAnimationManager.init();
-    }, 250);
+      const currentWidth = window.innerWidth;
+      if (Math.abs(currentWidth - lastWidth) > 200) {
+        scrollAnimationManager.init();
+        lastWidth = currentWidth;
+      }
+    }, 300);
   });
 </script>

@@ -53,6 +53,7 @@ const {
 const baseColor = color;
 const autoHoverColor = hoverColor || baseColor;
 const autoShadowColor = shadowColor || baseColor;
+const autoHoverTextColor = hoverTextColor || textColor;
 
 const iconSizes = {
   xs: iconSize || 12,
@@ -92,6 +93,7 @@ const buttonClasses = [
   baseClasses,
   sizeClasses[size],
   styleClasses[style],
+  `btn-${style}`, 
   fullWidth ? "w-full" : "",
   disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer",
   className,
@@ -110,6 +112,7 @@ const buttonId = `btn-${Math.random().toString(36).substr(2, 9)}`;
       target={target}
       rel={rel}
       class={`${buttonClasses} ${buttonId}`}
+      style={`--btn-bg: ${baseColor}; --btn-text: ${textColor}; --btn-hover: ${autoHoverColor}; --btn-hover-text: ${autoHoverTextColor}; --btn-border: ${baseColor}; --btn-shadow: ${autoShadowColor};`}
       {...rest}
     >
       {showIcon && (iconPosition === "left" || isIconOnly) && IconComponent && (
@@ -130,6 +133,7 @@ const buttonId = `btn-${Math.random().toString(36).substr(2, 9)}`;
       type={type}
       disabled={disabled}
       class={`${buttonClasses} ${buttonId}`}
+      style={`--btn-bg: ${baseColor}; --btn-text: ${textColor}; --btn-hover: ${autoHoverColor}; --btn-hover-text: ${autoHoverTextColor}; --btn-border: ${baseColor}; --btn-shadow: ${autoShadowColor};`}
       {...rest}
     >
       {showIcon && (iconPosition === "left" || isIconOnly) && IconComponent && (
@@ -235,37 +239,3 @@ const buttonId = `btn-${Math.random().toString(36).substr(2, 9)}`;
     color: var(--btn-hover-text);
   }
 </style>
-
-<script
-  define:vars={{
-    buttonId,
-    baseColor,
-    textColor,
-    autoHoverColor,
-    autoShadowColor,
-    style,
-    hoverTextColor,
-  }}
->
-  document.addEventListener("astro:page-load", function () {
-    const autoHoverTextColor = hoverTextColor || textColor;
-
-    function getColor(color) {
-      return color.startsWith("var(") ? color : color;
-    }
-
-    const button = document.querySelector(`.${buttonId}`);
-    if (button) {
-      button.classList.add(`btn-${style}`);
-      button.style.setProperty(
-        "--btn-hover-text",
-        getColor(autoHoverTextColor),
-      );
-      button.style.setProperty("--btn-bg", getColor(baseColor));
-      button.style.setProperty("--btn-text", getColor(textColor));
-      button.style.setProperty("--btn-hover", getColor(autoHoverColor));
-      button.style.setProperty("--btn-border", getColor(baseColor));
-      button.style.setProperty("--btn-shadow", getColor(autoShadowColor));
-    }
-  });
-</script>

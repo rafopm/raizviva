@@ -247,20 +247,25 @@ const buttonId = `btn-${Math.random().toString(36).substr(2, 9)}`;
     hoverTextColor,
   }}
 >
-  const autoHoverTextColor = hoverTextColor || textColor;
+  document.addEventListener("astro:page-load", function () {
+    const autoHoverTextColor = hoverTextColor || textColor;
 
-  function getColor(color) {
-    return color.startsWith("var(") ? color : color;
-  }
+    function getColor(color) {
+      return color.startsWith("var(") ? color : color;
+    }
 
-  const button = document.querySelector(`.${buttonId}`);
-  if (button) {
-    button.classList.add(`btn-${style}`);
-    button.style.setProperty('--btn-hover-text', getColor(autoHoverTextColor));
-    button.style.setProperty("--btn-bg", getColor(baseColor));
-    button.style.setProperty("--btn-text", getColor(textColor));
-    button.style.setProperty("--btn-hover", getColor(autoHoverColor));
-    button.style.setProperty("--btn-border", getColor(baseColor));
-    button.style.setProperty("--btn-shadow", getColor(autoShadowColor));
-  }
+    const button = document.querySelector(`.${buttonId}`);
+    if (button) {
+      button.classList.add(`btn-${style}`);
+      button.style.setProperty(
+        "--btn-hover-text",
+        getColor(autoHoverTextColor),
+      );
+      button.style.setProperty("--btn-bg", getColor(baseColor));
+      button.style.setProperty("--btn-text", getColor(textColor));
+      button.style.setProperty("--btn-hover", getColor(autoHoverColor));
+      button.style.setProperty("--btn-border", getColor(baseColor));
+      button.style.setProperty("--btn-shadow", getColor(autoShadowColor));
+    }
+  });
 </script>

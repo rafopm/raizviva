@@ -264,28 +264,43 @@ import ScrollAnimation from "../shared/ScrollAnimation.astro";
       name: "Ilzer",
       text: "Cada fardo es el futuro de mi familia. Cultivamos con la pureza de los Andes, sin químicos, porque es la misma alfalfa que alimenta a nuestros animales. Al elegirnos, eliges salud para los tuyos y un futuro digno.",
       image: "/images/home/ilzer.webp",
+      imageMobile: "/images/home/ilzer-mobile.webp",
     },
     {
       name: "Ana",
       text: "Nuestra alfalfa nace de la sabiduría de generaciones andinas. Cada corte es una promesa: calidad y nutrición pura para el ganado que la recibe. Aquí, la tierra y las manos trabajan en armonía.",
       image: "/images/home/ana.webp",
+      imageMobile: "/images/home/ana-mobile.webp",
     },
     {
       name: "Yuri",
       text: "En estas alturas, nuestra alfalfa se hace única. El sol andino y el frío de la noche concentran en cada hoja más nutrientes, más proteína. Es la fuerza de la montaña hecha forraje para tu ganado.",
       image: "/images/home/yuri.webp",
+      imageMobile: "/images/home/yuri-mobile.webp",
     },
   ];
 
   let currentTestimonial = 0;
 
+  function isMobile() {
+    return window.innerWidth <= 768;
+  }
+
   function updateTestimonial() {
     const t = testimonials[currentTestimonial];
+    const img = isMobile() && t.imageMobile ? t.imageMobile : t.image;
+
+    const testimonialImage = document.getElementById("testimonialImage");
+    testimonialImage.src = img;
+    testimonialImage.alt = `Testimonio de ${t.name}`;
+
     document.getElementById("testimonialName").textContent = t.name;
     document.getElementById("testimonialText").textContent = t.text;
-    document.getElementById("testimonialImage").src = t.image;
-    document.getElementById("testimonialImage").alt = `Testimonio de ${t.name}`;
   }
+
+  window.addEventListener("resize", () => {
+    updateTestimonial();
+  });
 
   document.getElementById("nextBtn").addEventListener("click", () => {
     currentTestimonial = (currentTestimonial + 1) % testimonials.length;

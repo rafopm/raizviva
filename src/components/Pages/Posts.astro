@@ -15,7 +15,7 @@ const [featuredPost, ...otherPosts] = posts; // El primer post es el destacado
 
 <section class="blog-section">
   <!-- Post destacado -->
-  <article class="featured-post bg-qs-bg-light hover:bg-qs-bg-very-light">
+  <article class="featured-post bg-rv-light hover:bg-rv-very-light">
     <img
       src={featuredPost.data.imgurl}
       srcset={`${featuredPost.data.imgthumburl} 767w, ${featuredPost.data.imgurl} 1200w`}
@@ -24,8 +24,8 @@ const [featuredPost, ...otherPosts] = posts; // El primer post es el destacado
     />
     <div class="featured-content">
       <span class="flex">
-        <Calendar width="20" height="20" color="var(--rv-text-dark)" />
-        <span class="post-date my-0 ml-2 text-qs-text-dark"
+        <Calendar width="20" height="20" color="var(--rv-dark)" />
+        <span class="post-date my-0 ml-2 text-rv-dark"
           >{featuredPost.data.pubDate.toLocaleDateString()}</span
         >
       </span>
@@ -35,7 +35,7 @@ const [featuredPost, ...otherPosts] = posts; // El primer post es el destacado
 
       <a
         href={`/blog/${featuredPost.id}/`}
-        class="flex w-[200px] px-3 py-2 text-sm font-bold text-qs-primary hover:text-qs-accent focus:ring-4 focus:outline-none focus:ring-qs-accent"
+        class="flex w-[200px] px-3 py-2 text-sm font-bold text-rv-primary hover:text-rv-accent focus:ring-4 focus:outline-none focus:ring-rv-accent"
         >
         Continuar leyendo ...
         </a>

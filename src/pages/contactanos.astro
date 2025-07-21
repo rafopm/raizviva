@@ -82,7 +82,7 @@ const contactData = {
   slug="/contactanos/"
 >
   <!-- Hero Section -->
-  <section class="porque-nuestra-alfalfa pt-8">
+  <section class="datos-de-contacto pt-8">
     <Container className="bg-rv-very-light py-12 lg:py-16  rounded-t-3xl">
       <div class="relative max-w-7xl mx-auto px-6">
         <div class="text-center max-w-4xl mx-auto">
@@ -133,7 +133,7 @@ const contactData = {
   </section>
 
   <!-- CTA Principal -->
-  <section class="porque-nuestra-alfalfa pt-0">
+  <section class="call-to-action pt-0">
     <Container className="bg-rv-light py-12 lg:py-16">
       <div class="max-w-4xl mx-auto px-6 text-center">
         <ScrollAnimation animation="fadeInUp" delay={0.2}>
@@ -154,7 +154,7 @@ const contactData = {
               {contactData.primaryContact.description}
             </p>
             <Button
-            ariaLabel="Quiero Comprar Alfalfa"
+              ariaLabel="Quiero Comprar Alfalfa"
               text="Quiero Comprar Alfalfa"
               icon="whatsapp"
               iconPosition="left"
@@ -180,7 +180,7 @@ const contactData = {
   </section>
 
   <!-- Métodos de contacto -->
-  <section class="porque-nuestra-alfalfa pt-0">
+  <section class="formas-de-contacto pt-0">
     <Container className="bg-rv-very-light py-12 lg:py-16">
       <div class="max-w-6xl mx-auto px-6">
         <ScrollAnimation animation="fadeInUp" delay={0.2}>
@@ -250,7 +250,7 @@ const contactData = {
   </section>
 
   <!-- FAQ Section -->
-  <section class="porque-nuestra-alfalfa pt-0">
+  <section class="preguntas-frecuentes pt-0">
     <Container className="bg-rv-light py-12 lg:py-16">
       <div class="max-w-4xl mx-auto px-6">
         <ScrollAnimation animation="fadeInUp" delay={0.2}>
@@ -288,7 +288,7 @@ const contactData = {
               ¿No encontraste la respuesta que buscabas?
             </p>
             <Button
-            ariaLabel="Hacer consulta personalizada"
+              ariaLabel="Hacer consulta personalizada"
               text="Hacer consulta personalizada"
               icon="whatsapp"
               iconPosition="left"
@@ -310,7 +310,7 @@ const contactData = {
   </section>
 
   <!-- Ubicación -->
-  <section class="porque-nuestra-alfalfa pt-0">
+  <section class="ubicacion pt-0" id="ubicacion">
     <Container className="bg-rv-very-light py-12 lg:py-16">
       <div class="max-w-6xl mx-auto px-6">
         <ScrollAnimation animation="fadeInUp" delay={0.2}>
@@ -405,7 +405,7 @@ const contactData = {
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
-              ariaLabel="Contactar ahora"
+                ariaLabel="Contactar ahora"
                 text="Contactar ahora"
                 icon="whatsapp"
                 iconPosition="left"
@@ -421,7 +421,7 @@ const contactData = {
               />
 
               <Button
-              ariaLabel="Ver ubicación"
+                ariaLabel="Ver ubicación"
                 text="Ver ubicación"
                 href="#ubicacion"
                 icon="location"
@@ -442,3 +442,9 @@ const contactData = {
     </Container>
   </section>
 </Layout>
+
+<style>
+  #ubicacion {
+    scroll-margin-top: 100px;
+  }
+</style>

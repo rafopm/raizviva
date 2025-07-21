@@ -4,15 +4,24 @@ import { WHATSAPP } from "../../consts";
 
 interface Props {
   text?: string;
-  variant?: string;
+  style?: "classic" | "flat" | "3d" | "glass" | "outline" | "minimal" | "rounded";
+  color?: string;
   message?: string;
+  size?: "xs" | "sm" | "md" | "lg" | "xl";
+  icon?: string;
+  iconPosition?: "left" | "right" | "only";
 }
 
 const {
   text = "Comprar",
-  variant = "primary",
+  style = "flat",
+  color = "#25D366",
   message = "Me interesa este producto",
+  size = "md",
+  icon,
+  iconPosition = "left",
 } = Astro.props;
+
 const currentUrl = Astro.url.href;
 const encodedMessage = encodeURIComponent(`${message}: ${currentUrl}`);
 const whatsappUrl = `https://wa.me/${WHATSAPP}?text=${encodedMessage}`;
@@ -24,9 +33,17 @@ const whatsappUrl = `https://wa.me/${WHATSAPP}?text=${encodedMessage}`;
   margin: 2.5rem 0;
 ">
   <Button
-    ariaLabel="Comprar Producto"
+    ariaLabel="Contactar por WhatsApp"
+    href={whatsappUrl}
+    target="_blank"
+    rel="noopener noreferrer"
     text={text}
-    url={whatsappUrl}
-    variant={variant}
+    style={style}
+    color={color}
+    textColor="white"
+    hoverColor="#128C7E"
+    size={size}
+    icon={icon}
+    iconPosition={iconPosition}
   />
 </div>

@@ -1,3 +1,4 @@
+export const SITE_URL = "https://raizviva.pe"
 export const SITE_TITLE = 'Rikchariy Chacrayoq | Alfalfa Orgánica de los Andes Peruanos';
 export const SITE_DESCRIPTION = 'Alfalfa orgánica de calidad superior, cultivada a +3,300 msnm por familias en Lahuaytambo. Nutrición pura para ganado y equinos. Apoya el desarrollo rural andino.';
 

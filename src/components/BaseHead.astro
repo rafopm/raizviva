@@ -1,4 +1,6 @@
 ---
+import BreadcrumbJsonLd from './shared/BreadcrumbJsonLd.astro';
+
 interface Props {
 	title: string;
 	metadescription: string;
@@ -19,7 +21,7 @@ const {
 //Breadcrumb Code
 const pathname = Astro.url.pathname;
 const segments = pathname.split("/").filter(Boolean);
-const site = Astro.site?.toString();
+const site = "https://raizviva.pe";
 
 const nameMap: { [key: string]: string } = {
   blog: "Blog",
@@ -32,25 +34,25 @@ function convertirTexto(text: string) {
   return text.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
 }
 
-let breadcrumbItems = [
+const breadcrumbItems = [
   {
     "@type": "ListItem",
-    position: 1,
-    name: "Inicio",
-    item: site,
+    "position": 1,
+    "name": "Inicio",
+    "item": "https://raizviva.pe/"
   },
+  {
+    "@type": "ListItem",
+    "position": 2,
+    "name": "Nosotros",
+    "item": "https://raizviva.pe/nosotros"
+  }
 ];
 
-let url = site;
-segments.forEach((segment, index) => {
-  url += "/" + segment;
-  const name = nameMap[segment] || convertirTexto(segment);
-  breadcrumbItems.push({
-    "@type": "ListItem",
-    position: index + 2,
-    name,
-    item: url,
-  });
+const breadcrumbJSON = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: breadcrumbItems
 });
 
 ---
@@ -260,12 +262,6 @@ segments.forEach((segment, index) => {
 			
 		]
 	}
-</script>
+</script >
 
-<script is:inline type="application/ld+json">
-	{
-	  "@context": "https://schema.org",
-	  "@type": "BreadcrumbList",
-	  "itemListElement": {JSON.stringify(breadcrumbItems, null, 2)}
-	}
-  </script>
+<BreadcrumbJsonLd />

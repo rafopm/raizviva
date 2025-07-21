@@ -2,9 +2,8 @@
 // BreadcrumbJsonLd.astro
 import { SITE_URL } from "../../consts";
 
-
 const pathname = Astro.url.pathname;
-const site = SITE_URL;
+const site = SITE_URL.endsWith("/") ? SITE_URL.slice(0, -1) : SITE_URL;
 
 const segments = pathname.split("/").filter(Boolean);
 
@@ -12,21 +11,19 @@ const nameMap: { [key: string]: string } = {
   blog: "Blog",
   productos: "Productos",
   contactanos: "Contáctanos",
-  nosotros: "Nosotros"
+  nosotros: "Nosotros",
 };
 
 function convertirTexto(text: string) {
-  return text
-    .replace(/-/g, " ")
-    .replace(/\b\w/g, c => c.toUpperCase());
+  return text.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
 }
 
-let items = [
+const items = [
   {
     "@type": "ListItem",
     position: 1,
     name: "Inicio",
-    item: site
+    item: `${site}/`
   }
 ];
 
@@ -50,4 +47,3 @@ const breadcrumbJSON = JSON.stringify({
 ---
 
 <script type="application/ld+json" set:html={breadcrumbJSON} />
-

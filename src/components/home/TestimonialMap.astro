@@ -279,44 +279,45 @@ import ScrollAnimation from "../shared/ScrollAnimation.astro";
       imageMobile: "/images/home/yuri-mobile.webp",
     },
   ];
+  document.addEventListener("astro:page-load", function () {
+    let currentTestimonial = 0;
 
-  let currentTestimonial = 0;
+    function isMobile() {
+      return window.innerWidth <= 768;
+    }
 
-  function isMobile() {
-    return window.innerWidth <= 768;
-  }
+    function updateTestimonial() {
+      const t = testimonials[currentTestimonial];
+      const img = isMobile() && t.imageMobile ? t.imageMobile : t.image;
 
-  function updateTestimonial() {
-    const t = testimonials[currentTestimonial];
-    const img = isMobile() && t.imageMobile ? t.imageMobile : t.image;
+      const testimonialImage = document.getElementById("testimonialImage");
+      testimonialImage.src = img;
+      testimonialImage.alt = `Testimonio de ${t.name}`;
 
-    const testimonialImage = document.getElementById("testimonialImage");
-    testimonialImage.src = img;
-    testimonialImage.alt = `Testimonio de ${t.name}`;
+      document.getElementById("testimonialName").textContent = t.name;
+      document.getElementById("testimonialText").textContent = t.text;
+    }
 
-    document.getElementById("testimonialName").textContent = t.name;
-    document.getElementById("testimonialText").textContent = t.text;
-  }
+    window.addEventListener("resize", () => {
+      updateTestimonial();
+    });
 
-  window.addEventListener("resize", () => {
+    document.getElementById("nextBtn").addEventListener("click", () => {
+      currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+      updateTestimonial();
+    });
+
+    document.getElementById("prevBtn").addEventListener("click", () => {
+      currentTestimonial =
+        (currentTestimonial - 1 + testimonials.length) % testimonials.length;
+      updateTestimonial();
+    });
+
+    setInterval(() => {
+      currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+      updateTestimonial();
+    }, 10000);
+
     updateTestimonial();
   });
-
-  document.getElementById("nextBtn").addEventListener("click", () => {
-    currentTestimonial = (currentTestimonial + 1) % testimonials.length;
-    updateTestimonial();
-  });
-
-  document.getElementById("prevBtn").addEventListener("click", () => {
-    currentTestimonial =
-      (currentTestimonial - 1 + testimonials.length) % testimonials.length;
-    updateTestimonial();
-  });
-
-  setInterval(() => {
-    currentTestimonial = (currentTestimonial + 1) % testimonials.length;
-    updateTestimonial();
-  }, 10000);
-
-  updateTestimonial();
 </script>

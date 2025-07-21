@@ -12,9 +12,47 @@ const absoluteUrl = new URL(Astro.url.pathname, Astro.site);
 const {
 	title,
 	metadescription = "",
-	image = "/images/home/campo-raiz-viva.webp",
+	image = "/images/raizviva-lahuaytambo.webp",
 	updateDate,
 } = Astro.props;
+
+//Breadcrumb Code
+const pathname = Astro.url.pathname;
+const segments = pathname.split("/").filter(Boolean);
+const site = Astro.site?.toString();
+
+const nameMap: { [key: string]: string } = {
+  blog: "Blog",
+  productos: "Productos",
+  contactanos: "Contáctanos",
+  nosotros: "Nosotros"
+};
+
+function convertirTexto(text: string) {
+  return text.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+}
+
+let breadcrumbItems = [
+  {
+    "@type": "ListItem",
+    position: 1,
+    name: "Inicio",
+    item: site,
+  },
+];
+
+let url = site;
+segments.forEach((segment, index) => {
+  url += "/" + segment;
+  const name = nameMap[segment] || convertirTexto(segment);
+  breadcrumbItems.push({
+    "@type": "ListItem",
+    position: index + 2,
+    name,
+    item: url,
+  });
+});
+
 ---
 
 <!-- Global Metadata -->
@@ -28,8 +66,8 @@ const {
 <meta name="copyright" content="RaizViva 2025" />
 <meta name="geo.region" content="PE" />
 <meta name="geo.placename" content="Lima, Perú" />
-<meta name="geo.position" content="-12.237741487964232;-76.32748288861242" />
-<meta name="ICBM" content="-12.237741487964232;-76.32748288861242" />
+<meta name="geo.position" content="-12.104151;-76.392239" />
+<meta name="ICBM" content="-12.104151;-76.392239" />
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
@@ -180,22 +218,22 @@ const {
 		"@context": "https://schema.org",
 		"@type": "LocalBusiness",
 		"name": "RaizViva",
-		"image": "https://raizviva.pe/images/logo/logo-raiz-viva.webp",
+		"image": "https://raizviva.pe/images/logo/logo-raiz-viva.svg",
 		"@id": "https://raizviva.pe",
 		"url": "https://raizviva.pe",
-		"telephone": "+51987082504",
+		"telephone": "+51988021480",
 		"address": {
 			"@type": "PostalAddress",
 			"streetAddress": "Calle Lahuaytambo S/N, Lahuaytambo, Huarochirí, Lima - Perú",
 			"addressLocality": "Huarochirí",
 			"addressRegion": "Lima",
-			"postalCode": "15630",
+			"postalCode": "15577",
 			"addressCountry": "PE"
 		},
 		"geo": {
 			"@type": "GeoCoordinates",
 			"latitude": -12.0251104,
-			"longitude": -77.5930254
+			"longitude": -76.392239
 		},
 		"openingHoursSpecification": [
 			{
@@ -226,27 +264,8 @@ const {
 
 <script is:inline type="application/ld+json">
 	{
-		"@context": "https://schema.org",
-		"@type": "BreadcrumbList",
-		"itemListElement": [
-			{
-				"@type": "ListItem",
-				"position": 1,
-				"name": "Inicio",
-				"item": "https://raizviva.pe"
-			},
-			{
-				"@type": "ListItem",
-				"position": 3,
-				"name": "Blog",
-				"item": "https://raizviva.pe/blog"
-			},
-			{
-				"@type": "ListItem",
-				"position": 4,
-				"name": "Contáctanos",
-				"item": "https://raizviva.pe/contactanos"
-			}
-		]
+	  "@context": "https://schema.org",
+	  "@type": "BreadcrumbList",
+	  "itemListElement": {JSON.stringify(breadcrumbItems, null, 2)}
 	}
-</script>
+  </script>

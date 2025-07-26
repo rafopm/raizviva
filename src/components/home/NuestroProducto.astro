@@ -1,5 +1,5 @@
 ---
-import { WHATSAPP } from "../../consts";
+import { CONTACT, SITE } from "../../consts";
 import Button from "../shared/Button.astro";
 import Container from "../shared/Container.astro";
 import Icon from "../shared/Icon.astro";
@@ -76,7 +76,7 @@ import VideoLazy from "../shared/VideoLazy.astro";
                             hoverColor="var(--rv-dark)"
                             shadowColor="var(--rv-dark)"
                             size="xl"
-                            href={`https://wa.me/${WHATSAPP}?text=Me%20interesa%20su%20producto%20https://raizviva.pe/%20`}
+                            href={`https://wa.me/${CONTACT.WHATSAPP}?text=Me%20interesa%20su%20producto%20${SITE.URL}`}
                             target="_blank"
                             rel="noopener noreferrer"
                             class="px-8"

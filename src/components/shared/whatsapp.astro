@@ -1,9 +1,9 @@
 ---
-import { WHATSAPP } from "../../consts";
+import { CONTACT, SITE } from "../../consts";
 
 ---
 <a
-    href={`https://api.whatsapp.com/send?phone=${WHATSAPP}&text=¡Hola!%20Quiero%20saber%20m%C3%A1s%20sobre%20los%20productos%20RaizViva.`}
+    href={`https://api.whatsapp.com/send?phone=${CONTACT.WHATSAPP}&text=¡Hola!%20Quiero%20saber%20m%C3%A1s%20sobre%20los%20productos%20${SITE.MARCA}.`}
     target="_blank"
     class="btn-whatsapp-pulse"
     aria-label="Contactame por Whatsapp"

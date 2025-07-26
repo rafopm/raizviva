@@ -4,7 +4,7 @@ import Layout from "../layouts/BlogPost.astro";
 import ScrollAnimation from "../components/shared/ScrollAnimation.astro";
 import Icon from "../components/shared/Icon.astro";
 import Map from "../components/shared/Map.astro";
-import { DIRECCION, EMAIL, WHATSAPP } from "../consts";
+import { CONTACT, SOCIAL, SITE } from "../consts";
 import Container from "../components/shared/Container.astro";
 import Button from "../components/shared/Button.astro";
 
@@ -13,15 +13,14 @@ const contactData = {
   hero: {
     title: "Conectemos",
     subtitle: "Desde los Andes del Perú hasta tu hogar",
-    description:
-      "Somos Asociación Agro-productora Rikchariy Chacrayoq Lahuaytambo Hri, una asociación que cultiva alfalfa orgánica a más de 3,300 metros de altura. Contáctanos para conocer nuestros productos RaízViva.",
+    description: SITE.DESCRIPTION,
   },
   primaryContact: {
     title: "¿Listo para hacer tu pedido?",
     description: "Respuesta rápida y personalizada",
     action: "Escribir por WhatsApp",
-    url: `https://wa.me/${WHATSAPP}?text=Hola,%20estoy%20interesado%20en%20comprar%20productos%20de%20RaízViva`,
-    phone: WHATSAPP,
+    url: `https://wa.me/${CONTACT.WHATSAPP}?text=Hola,%20estoy%20interesado%20en%20comprar%20productos%20de%20RaízViva`,
+    phone: CONTACT.WHATSAPP,
   },
   contactMethods: [
     {
@@ -29,22 +28,22 @@ const contactData = {
       description: "Atención directa para pedidos y consultas",
       detail: "Respuesta en menos de 2 horas",
       icon: "whatsapp",
-      url: `https://wa.me/${WHATSAPP}?text=Hola,%20estoy%20interesado%20en%20comprar%20productos%20de%20RaízViva`,
+      url: `https://wa.me/${CONTACT.WHATSAPP}?text=Hola,%20estoy%20interesado%20en%20comprar%20productos%20de%20RaízViva`,
       color: "green",
       badge: "Más rápido",
     },
     {
       title: "Correo electrónico",
-      description: EMAIL,
+      description: CONTACT.EMAIL,
       detail: "Ideal para consultas detalladas",
       icon: "email",
-      url: `mailto:${EMAIL}`,
+      url: `mailto:${CONTACT.EMAIL}`,
       color: "blue",
       badge: null,
     },
     {
       title: "Visítanos",
-      description: DIRECCION,
+      description: CONTACT.ADDRESS,
       detail: "Conoce nuestras instalaciones",
       icon: "location",
       url: "#ubicacion",
@@ -74,9 +73,9 @@ const contactData = {
 
 <Layout
   title="Contáctanos"
-  metatitle="Contáctanos | Asociación Rikchariy – Marca RaízViva"
-  metadescription="¿Quieres comprar alfalfa fresca o deshidratada? Escríbenos por WhatsApp o visítanos en nuestra comunidad andina. Somos Rikchariy, una asociación rural con la marca RaízViva."
-  description="Contáctanos para adquirir alfalfa de altura, cultivada de forma orgánica y solidaria bajo nuestra marca RaízViva. Somos la Asociación Rikchariy, una comunidad organizada desde los Andes del Perú."
+  metatitle="Contáctanos | Asociación Rikchariy Chacrayoq – RaízViva"
+  metadescription="¿Quieres comprar alfalfa fresca o deshidratada? Escríbenos por WhatsApp o visítanos en nuestra comunidad andina. Somos Rikchariy Chacrayoq, una asociación rural con la marca RaízViva."
+  description="Contáctanos para adquirir alfalfa de altura, cultivada de forma orgánica y solidaria bajo nuestra marca RaízViva. Somos la Asociación Rikchariy Chacrayoq, una comunidad organizada desde los Andes del Perú."
   heroimage="/images/home/campo-raiz-viva.webp"
   heroimagethumb="/images/home/campo-raiz-viva.webp"
   slug="/contactanos/"
@@ -97,7 +96,7 @@ const contactData = {
 
           <ScrollAnimation animation="fadeInUp" delay={0.3}>
             <p class="text-xl md:text-2xl text-rv-dark mb-8 font-semibold">
-              Desde los Andes del Perú hasta tu hogar
+              {contactData.hero.subtitle}
             </p>
           </ScrollAnimation>
 
@@ -105,11 +104,7 @@ const contactData = {
             <p
               class="text-lg text-rv-very-dark max-w-2xl mx-auto leading-relaxed"
             >
-              Somos la <span class="font-semibold"
-                >Asociación Agro-productora Rikchariy Chacrayoq Lahuaytambo Hri</span
-              >, una asociación que cultiva alfalfa orgánica a más de 3,300
-              metros de altura. Contáctanos para conocer nuestros productos
-              RaízViva.
+              {contactData.hero.description}
             </p>
           </ScrollAnimation>
           <ScrollAnimation animation="fadeInUp" delay={0.4}>
@@ -123,8 +118,7 @@ const contactData = {
             <p
               class="text-lg text-rv-very-dark max-w-2xl mx-auto leading-relaxed"
             >
-              <span class="font-semibold">Dirección:</span> CAL.LAHUAYTAMBO LOTE.
-              S/N LIMA - HUAROCHIRI - LAHUAYTAMBO
+              <span class="font-semibold">Dirección:</span> {CONTACT.ADDRESS}
             </p>
           </ScrollAnimation>
         </div>
@@ -164,7 +158,7 @@ const contactData = {
               hoverColor="var(--rv-dark)"
               shadowColor="var(--rv-dark)"
               size="xl"
-              href={`https://wa.me/${WHATSAPP}?text=Me%20interesa%20su%20producto%20https://raizviva.pe/%20`}
+              href={contactData.primaryContact.url}
               target="_blank"
               rel="noopener noreferrer"
               class="px-8"
@@ -298,7 +292,7 @@ const contactData = {
               hoverColor="var(--rv-dark)"
               shadowColor="var(--rv-dark)"
               size="xl"
-              href={`https://wa.me/${WHATSAPP}?text=Me%20interesa%20su%20producto%20https://raizviva.pe/%20`}
+              href={contactData.primaryContact.url}
               target="_blank"
               rel="noopener noreferrer"
               class="px-8"
@@ -318,7 +312,7 @@ const contactData = {
             <h2 class="title">Nuestra ubicación en los Andes</h2>
             <div class="w-24 h-1 bg-green-500 mx-auto mb-6 rounded-full"></div>
             <p class="paragraph">
-              Somos Rikchariy, una asociación agrícola organizada en los Andes,
+              Somos Rikchariy Chacrayoq, una asociación agrícola organizada en los Andes,
               a más de 3,300 metros de altura. Nuestra marca, RaízViva, nace del
               trabajo comunitario, la altura y la esperanza de una economía
               solidaria.
@@ -339,7 +333,7 @@ const contactData = {
                   <h3 class="text-xl font-medium text-rv-very-dark mb-2">
                     Dirección
                   </h3>
-                  <p class="text-rv-dark">{DIRECCION}</p>
+                  <p class="text-rv-dark">{CONTACT.ADDRESS}</p>
                 </div>
               </div>
 
@@ -415,7 +409,7 @@ const contactData = {
                 hoverColor="var(--rv-dark)"
                 shadowColor="var(--rv-dark)"
                 size="xl"
-                href={`https://wa.me/${WHATSAPP}?text=Me%20interesa%20su%20producto%20https://raizviva.pe/%20`}
+                href={contactData.primaryContact.url}
                 target="_blank"
                 rel="noopener noreferrer"
               />

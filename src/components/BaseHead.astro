@@ -1,267 +1,134 @@
 ---
+import { SITE, META, FONTS, ICONS, EXTERNAL_RESOURCES, PWA } from "../consts";
 import BreadcrumbJsonLd from './shared/BreadcrumbJsonLd.astro';
+import LocalBusinessJSON from './shared/LocalBusinessJSON.astro';
 
 interface Props {
-	title: string;
-	metadescription: string;
-	image?: string;
-	updateDate?: string;
+  title: string;
+  metadescription?: string;
+  image?: string;
+  updateDate?: string;
 }
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const absoluteUrl = new URL(Astro.url.pathname, Astro.site);
 
 const {
-	title,
-	metadescription = "",
-	image = "/images/raizviva-lahuaytambo.webp",
-	updateDate,
+  title,
+  metadescription = SITE.DESCRIPTION,
+  image = "/images/image-og.webp",
+  updateDate,
 } = Astro.props;
 
-//Breadcrumb Code
-const pathname = Astro.url.pathname;
-const segments = pathname.split("/").filter(Boolean);
-const site = "https://raizviva.pe";
+const preloadLinks = Object.entries(FONTS).flatMap(([family, weights]) =>
+  Object.entries(weights).map(([weight, path]) => ({
+    href: path,
+    type: "font/woff2",
+    as: "font"
+  }))
+);
 
-const nameMap: { [key: string]: string } = {
-  blog: "Blog",
-  productos: "Productos",
-  contactanos: "Contáctanos",
-  nosotros: "Nosotros"
-};
-
-function convertirTexto(text: string) {
-  return text.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
-}
-
-const breadcrumbItems = [
-  {
-    "@type": "ListItem",
-    "position": 1,
-    "name": "Inicio",
-    "item": "https://raizviva.pe/"
-  },
-  {
-    "@type": "ListItem",
-    "position": 2,
-    "name": "Nosotros",
-    "item": "https://raizviva.pe/nosotros"
-  }
-];
-
-const breadcrumbJSON = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: breadcrumbItems
-});
-
+const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astro.url;
+const ogImage = Astro.site ? new URL(image, Astro.site) : image;
 ---
 
-<!-- Global Metadata -->
+
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<meta name="language" content="es" />
-<meta name="robots" content="index, follow" />
-<meta name="googlebot" content="index, follow" />
-<meta name="author" content="RaizViva" />
-<meta name="copyright" content="RaizViva 2025" />
-<meta name="geo.region" content="PE" />
-<meta name="geo.placename" content="Lima, Perú" />
-<meta name="geo.position" content="-12.104151;-76.392239" />
-<meta name="ICBM" content="-12.104151;-76.392239" />
-<meta name="mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="default" />
-<!-- Font preloads -->
-<link
-	rel="preload"
-	href="/fonts/Goldplay-Regular.woff2"
-	as="font"
-	type="font/woff2"
-	crossorigin
-/>
-<link
-	rel="preload"
-	href="/fonts/Goldplay-SemiBold.woff2"
-	as="font"
-	type="font/woff2"
-	crossorigin="anonymous"
-/>
-<link
-	rel="preload"
-	href="/fonts/Goldplay-BoldIt.woff2"
-	as="font"
-	type="font/woff2"
-	crossorigin="anonymous"
-/>
-<link
-	rel="preload"
-	href="/fonts/Goldplay-Black.woff2"
-	as="font"
-	type="font/woff2"
-	crossorigin="anonymous"
-/>
+<meta name="viewport" content={META.VIEWPORT} />
+<meta name="language" content={SITE.LANGUAGE} />
+<meta name="robots" content={META.ROBOTS} />
+<meta name="googlebot" content={META.ROBOTS} />
+<meta name="author" content={SITE.AUTHOR} />
+<meta name="copyright" content={SITE.COPYRIGHT} />
+<meta name="theme-color" content={META.THEME_COLOR} />
 
-<link rel="preload" href={image} as="image" fetchpriority="high" />
-<link
-	rel="preload"
-	href="/images/logo/logo-raiz-viva.svg"
-	as="image"
-	media="(max-width: 640px)"
-	fetchpriority="high"
-/>
 
-<!-- Canonical URL -->
+<meta name="geo.region" content={SITE.GEO.REGION} />
+<meta name="geo.placename" content={SITE.GEO.PLACENAME} />
+<meta name="geo.position" content={`${SITE.GEO.LATITUDE};${SITE.GEO.LONGITUDE}`} />
+<meta name="ICBM" content={`${SITE.GEO.LATITUDE};${SITE.GEO.LONGITUDE}`} />
+
+
+<meta name="mobile-web-app-capable" content={META.MOBILE.WEB_APP_CAPABLE} />
+<meta name="apple-mobile-web-app-capable" content={META.MOBILE.APPLE.WEB_APP_CAPABLE} />
+<meta name="apple-mobile-web-app-status-bar-style" content={META.MOBILE.APPLE.STATUS_BAR_STYLE} />
+<meta name="format-detection" content={META.MOBILE.FORMAT_DETECTION} />
+<meta name="HandheldFriendly" content={META.MOBILE.HANDHELD_FRIENDLY} />
+<meta name="x-ua-compatible" content={META.BROWSER_COMPATIBILITY} />
+
+
+{updateDate && (
+  <>
+    <meta name="date" content={updateDate} />
+    <meta property="article:modified_time" content={updateDate} />
+  </>
+)}
+
+
+{META.FAVICON.SVG && (
+  <link rel="icon" href={META.FAVICON.SVG} type="image/svg+xml" />
+)}
+{META.FAVICON.ICO && (
+  <link rel="alternate icon" href={META.FAVICON.ICO} type="image/x-icon" />
+)}
+
+
+{ICONS.APPLE.map(icon => (
+  <link rel="apple-touch-icon" sizes={icon.sizes} href={icon.href} />
+))}
+
+
+{ICONS.FAVICON.map(icon => (
+  <link rel="icon" type={icon.type} sizes={icon.sizes} href={icon.href} />
+))}
+
+
+{ICONS.MS.CONFIG.map(tile => (
+  <meta name={tile.name} content={tile.content} />
+))}
+<meta name="msapplication-TileColor" content={ICONS.MS.TILE_COLOR} />
+<meta name="msapplication-config" content="/browserconfig.xml" />
+
+
+<link rel="mask-icon" href={ICONS.SAFARI_PIN.href} color={ICONS.SAFARI_PIN.color} />
+
+
+<link rel="manifest" href={META.FAVICON.MANIFEST} />
+
+
+{preloadLinks.map(link => (
+	<link rel="preload" as={link.as} href={link.href} type={link.type} crossorigin="anonymous" />
+  ))}
+
+
 <link rel="canonical" href={canonicalURL} />
 
-<!-- Primary Meta Tags -->
-<title>{title}</title>
-<meta name="title" content={title} />
+
+<title>{title ? title : SITE.TITLE}</title>
+<meta name="title" content={title ? title : SITE.TITLE} />
 <meta name="description" content={metadescription} />
-<meta name="date" content={updateDate} />
-<meta property="article:modified_time" content={updateDate} />
 
-<!-- Open Graph / Facebook -->
+
 <meta property="og:type" content="website" />
-<meta property="og:url" content={absoluteUrl} />
-
-<meta property="og:title" content={title} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={title ?  title : SITE.TITLE} />
 <meta property="og:description" content={metadescription} />
-<meta property="og:image" content={new URL(image, Astro.url)} />
-<meta property="og:site_name" content="RaizViva" />
+<meta property="og:image" content={ogImage} />
+<meta property="og:site_name" content={SITE.TITLE} />
 
-<!-- Twitter -->
+
 <meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content={absoluteUrl} />
-<meta property="twitter:title" content={title} />
+<meta property="twitter:url" content={canonicalURL} />
+<meta property="twitter:title" content={title ?  title : SITE.TITLE} />
 <meta property="twitter:description" content={metadescription} />
-<meta property="twitter:image" content={new URL(image, Astro.url)} />
+<meta property="twitter:image" content={ogImage} />
 
-<link
-	rel="apple-touch-icon"
-	sizes="57x57"
-	href="/images/favicon/apple-icon-57x57.png"
-/>
-<link
-	rel="apple-touch-icon"
-	sizes="60x60"
-	href="/images/favicon/apple-icon-60x60.png"
-/>
-<link
-	rel="apple-touch-icon"
-	sizes="72x72"
-	href="/images/favicon/apple-icon-72x72.png"
-/>
-<link
-	rel="apple-touch-icon"
-	sizes="76x76"
-	href="/images/favicon/apple-icon-76x76.png"
-/>
-<link
-	rel="apple-touch-icon"
-	sizes="114x114"
-	href="/images/favicon/apple-icon-114x114.png"
-/>
-<link
-	rel="apple-touch-icon"
-	sizes="120x120"
-	href="/images/favicon/apple-icon-120x120.png"
-/>
-<link
-	rel="apple-touch-icon"
-	sizes="144x144"
-	href="/images/favicon/apple-icon-144x144.png"
-/>
-<link
-	rel="apple-touch-icon"
-	sizes="152x152"
-	href="/images/favicon/apple-icon-152x152.png"
-/>
-<link
-	rel="apple-touch-icon"
-	sizes="180x180"
-	href="/images/favicon/apple-icon-180x180.png"
-/>
-<link
-	rel="icon"
-	type="image/png"
-	sizes="192x192"
-	href="/images/favicon/android-icon-192x192.png"
-/>
-<link
-	rel="icon"
-	type="image/png"
-	sizes="32x32"
-	href="/images/favicon/favicon-32x32.png"
-/>
-<link
-	rel="icon"
-	type="image/png"
-	sizes="96x96"
-	href="/images/favicon/favicon-96x96.png"
-/>
-<link
-	rel="icon"
-	type="image/png"
-	sizes="16x16"
-	href="/images/favicon/favicon-16x16.png"
-/>
-<link rel="manifest" href="/images/favicon/manifest.json" />
-<meta name="msapplication-TileColor" content="#ffffff" />
-<meta
-	name="msapplication-TileImage"
-	content="/images/favicon/ms-icon-144x144.png"
-/>
-<meta name="theme-color" content="#ffffff" />
 
-<script type="application/ld+json">
-	{
-		"@context": "https://schema.org",
-		"@type": "LocalBusiness",
-		"name": "RaizViva",
-		"image": "https://raizviva.pe/images/logo/logo-raiz-viva.svg",
-		"@id": "https://raizviva.pe",
-		"url": "https://raizviva.pe",
-		"telephone": "+51988021480",
-		"address": {
-			"@type": "PostalAddress",
-			"streetAddress": "Calle Lahuaytambo S/N, Lahuaytambo, Huarochirí, Lima - Perú",
-			"addressLocality": "Huarochirí",
-			"addressRegion": "Lima",
-			"postalCode": "15577",
-			"addressCountry": "PE"
-		},
-		"geo": {
-			"@type": "GeoCoordinates",
-			"latitude": -12.0251104,
-			"longitude": -76.392239
-		},
-		"openingHoursSpecification": [
-			{
-				"@type": "OpeningHoursSpecification",
-				"dayOfWeek": [
-					"Monday",
-					"Tuesday",
-					"Wednesday",
-					"Thursday",
-					"Friday"
-				],
-				"opens": "08:00",
-				"closes": "17:00"
-			},
-			{
-				"@type": "OpeningHoursSpecification",
-				"dayOfWeek": "Saturday",
-				"opens": "09:00",
-				"closes": "14:00"
-			}
-		],
-		"sameAs": [
-			"https://www.facebook.com/RaizVivaPeru"
-			
-		]
-	}
-</script >
-
+<LocalBusinessJSON />
 <BreadcrumbJsonLd />
+
+
+<!-- {EXTERNAL_RESOURCES.VIMEO.map(url => (
+  <>
+    <link rel="preconnect" href={url} key={url} />
+    <link rel="dns-prefetch" href={url} key={`dns-${url}`} />
+  </>
+))} -->

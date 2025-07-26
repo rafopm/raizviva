@@ -1,30 +1,21 @@
 ---
 import Button from "./Button.astro";
-import { WHATSAPP } from "../../consts";
+import { CONTACT } from "../../consts";
 
 interface Props {
   text?: string;
-  style?: "classic" | "flat" | "3d" | "glass" | "outline" | "minimal" | "rounded";
-  color?: string;
+  variant?: string;
   message?: string;
-  size?: "xs" | "sm" | "md" | "lg" | "xl";
-  icon?: string;
-  iconPosition?: "left" | "right" | "only";
 }
 
 const {
   text = "Comprar",
-  style = "flat",
-  color = "#25D366",
+  variant = "primary",
   message = "Me interesa este producto",
-  size = "md",
-  icon,
-  iconPosition = "left",
 } = Astro.props;
-
 const currentUrl = Astro.url.href;
 const encodedMessage = encodeURIComponent(`${message}: ${currentUrl}`);
-const whatsappUrl = `https://wa.me/${WHATSAPP}?text=${encodedMessage}`;
+const whatsappUrl = `https://wa.me/${CONTACT.WHATSAPP}?text=${encodedMessage}`;
 ---
 
 <div style="
@@ -32,18 +23,21 @@ const whatsappUrl = `https://wa.me/${WHATSAPP}?text=${encodedMessage}`;
   justify-content: center;
   margin: 2.5rem 0;
 ">
+  <Button text={text} url={whatsappUrl} variant={variant} />
+
   <Button
-    ariaLabel="Contactar por WhatsApp"
-    href={whatsappUrl}
-    target="_blank"
-    rel="noopener noreferrer"
+    ariaLabel={text}
     text={text}
-    style={style}
-    color={color}
-    textColor="white"
-    hoverColor="#128C7E"
-    size={size}
-    icon={icon}
-    iconPosition={iconPosition}
+    href={whatsappUrl}
+    icon="whatsapp"
+    iconPosition="left"
+    style="classic"
+    color="var(--rv-dark)"
+    textColor="var(--rv-light)"
+    hoverColor="var(--rv-light)"
+    hoverTextColor="var(--rv-dark)"
+    shadowColor="var(--rv-dark)"
+    size="xl"
+    class="px-[60px]"
   />
 </div>
